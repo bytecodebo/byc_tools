@@ -1,0 +1,26 @@
+import:
+  - ../conf/config.yaml
+  - ../common_mani_sake/variables.yaml
+  - ../common_mani_sake/themes.yaml
+  - ../common_mani_sake/specs.yaml
+  - ../common_mani_sake/targets.yaml
+  - ../common_mani_sake/common.yaml
+  - ../common_mani_sake/tasks.yaml
+  - ../common_mani_sake/tasks-git.yaml
+  - ../common_mani_sake/dockers.yaml
+
+projects:
+  main_project_path:
+    path: .
+  
+  byc_tools:
+    url: git@github.com:bytecodebo/byc_tools.git
+    clone: git clone $MANI_PROJECT_BRANCH $MANI_PROJECT_SINGLE_BRANCH $MANI_PROJECT_URL $MANI_PROJECT_PATH
+    branch: $(echo $BRANCH_NAME)
+    depth: $(echo $BRANCH_DEPTH)
+    single: $(echo $SINGLE_BRANCH)
+
+tasks:
+  hello:
+    desc: Print Hello World
+    cmd: echo "Hello World"

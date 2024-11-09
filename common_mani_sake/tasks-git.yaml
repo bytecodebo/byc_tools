@@ -1,0 +1,191 @@
+tasks:
+  g-fn:
+    desc: Find git repositories
+    target:
+      all: false
+    cmd: |     
+      find ${PROJECT_PATH} -type d -exec test -d {}/.git \; -prune -print
+  
+
+  g-ft:
+    desc: Fetch git
+    tags: [git]
+    cmd: git fetch
+
+  g-st:
+    desc: show working tree status (git)
+    spec: custom
+    tags: [git]
+    target: all
+    cmd: git status
+
+  g-ba:
+    desc: git branch -a
+    tags: [git]
+    cmd: git branch -a
+
+  g-co:
+    desc: Switch branch git
+    tags: [git]
+    env:
+      branch: 14.0
+    cmd: git checkout $branch
+
+  g-cb:
+    desc: Create branch git
+    tags: [git]
+    cmd: git checkout -b $branch
+
+  g-pl:
+    desc: Pull origin git
+    tags: [git]
+    cmd: git pull origin $branch
+  
+  g-ad:
+    desc: Git add
+    tags: [git]
+    cmd: git add .
+
+  g-us:
+    desc: untracked setup
+    tags: [git]
+    env:
+      branch: 14.0
+    cmd: | 
+      git rm --cached -r setup
+      git commit -m "Untracked setup folder"
+
+  g-mg:
+    desc: Merge local branch git brr=remote branch branch=current branch
+    tags: [git]
+    env:
+      branch: 14.0
+      brr: 14.0dev
+    cmd: git merge $brr
+
+  g-cm:
+    desc: Commit branch git
+    tags: [git]
+    env:
+      msg: ""
+    commands:
+      - task: g-ad
+      - cmd: |        
+          if [ "$msg" = "" ]; then
+            DATE=$(date -u +"%Y-%m-%dT%H:%M:%S%Z")
+            msg="automatic commit at $DATE"
+          fi      
+          git commit -a -m "$msg"
+
+  g-up:
+    desc: Commit, pull and push branch git
+    tags: [git]
+    env:
+      msg: ""
+      branch: 14.0.dev
+    spec:
+      output: text
+      omit_empty: true
+    commands:
+      - task: g-cm
+      - task: g-pl
+      - task: g-ph
+
+  g-ph:
+    desc: Push branch git
+    tags: [git]
+    env:
+      branch: 14.0dev
+    cmd: git push origin $branch
+
+  g-lcm:
+    desc: show last commit
+    tags: [git]
+    env:
+      branch: 14.0
+    cmd: git log -1 --pretty=%B
+
+  g-lcd:
+    desc: show last commit date
+    tags: [git]
+    env:
+      branch: 14.0
+    cmd: |
+        git log -1 --format="%cd (%cr)" -n 1 --date=format:"%d  %b %y" \
+        | sed 's/ //'
+
+  g-ovw:
+    desc: show branch, local and remote diffs, last commit and date
+    tags: [git]
+    spec: custom
+    target: all
+    theme: custom
+    commands:
+      - task: g-br
+      - task: g-lcm
+      - task: g-lcd
+
+  g-comp:
+    desc: check out, merge and pull
+    tags: [git]
+    spec: custom
+    theme: custom
+    commands:
+      - task: g-co
+      - task: g-mg
+      - task: g-cm
+      - task: g-ph
+
+  multi:
+    cmd: | # Multi line command
+      echo "1st line "
+      echo "2nd line"
+
+  # default-tags:
+  #   target:
+  #     tags: [ base ]
+  #   cmd: pwd
+
+  # default-projects:
+  #   target:
+  #     projects: [ tcp_base_tecorp ]
+  #   cmd: pwd
+
+  g-br:
+    desc: show current git branch
+    tags: [git]
+    target: all
+    cmd: git rev-parse --abbrev-ref HEAD
+
+  g-vc:
+    desc: check if exists a commit to do
+    theme: filter_list
+    spec: filter_list
+    tags: [git]
+    target: all
+    cmd: git rev-parse -q --verify "$sha^{commit}" > /dev/null
+
+  # default-output:
+  #   spec:
+  #     output: table
+  #   cmd: pwd
+
+  pwd: pwd
+
+  g-send:
+    desc: cm and ph git
+    tags: [git]
+    spec:
+      output: text
+      omit_empty: true
+    env:      
+      msg: ""
+    commands:
+      - task: g-cm      
+      - task: g-ph 
+  
+specs:
+  table:
+    output: text
+    parallel: false
+    ignore_errors: true

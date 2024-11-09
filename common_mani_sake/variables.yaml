@@ -1,0 +1,12 @@
+tasks:
+  env-default:
+    spec:
+      output: table
+    cmd: |
+      echo
+      echo "# TASK"
+      echo
+      echo "# CONFIG"
+      echo "MANI_CONFIG $MANI_CONFIG"
+      echo "MANI_USER_CONFIG $MANI_USER_CONFIG"   
+      echo "NOCOLOR $NO_COLOR"

@@ -1,0 +1,11 @@
+import:
+  - ../conf/config.yaml
+  - ../common_mani_sake/variables.yaml
+  - ../common_mani_sake/themes.yaml
+  - ../common_mani_sake/specs.yaml
+  - ../common_mani_sake/targets.yaml
+  - ../common_mani_sake/common.yaml
+  - ../common_mani_sake/tasks.yaml
+  - ../common_mani_sake/tasks-git.yaml
+  - ../common_mani_sake/dockers.yaml
+  - ./servers.yaml

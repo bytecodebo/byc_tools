@@ -1,0 +1,12 @@
+# disable_verify_host: true
+# known_hosts_file: ./known_hosts
+shell: bash
+
+# List of environment variables that are available to all tasks
+env:
+  # Simple string value
+  AUTHOR: "rsv"
+
+  # Shell command substitution (evaluated on localhost)
+  DATE: $(date -u +"%Y-%m-%dT%H:%M:%S%Z")
+  SSH_SECRET_PWD: $(echo $MY_SECRET_PASSWORD)

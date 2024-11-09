@@ -1,0 +1,36 @@
+specs:
+  advanced:
+    output: table
+    parallel: false
+    ignore_errors: true
+    omit_empty: false
+
+  custom:
+    output: table
+    parallel: true
+
+  info:
+    output: table
+    ignore_errors: true
+    omit_empty_rows: true
+    omit_empty_columns: true
+    any_fatal_errors: false
+    ignore_unreachable: true
+    strategy: free
+
+  path_odoo:
+    output: text
+    omit_empty: true
+
+  filter_list:
+    output: table
+    ignore_errors: true
+    omit_empty_rows: true
+    omit_empty_columns: true
+    any_fatal_errors: false
+    ignore_unreachable: true
+
+  discover_projects:
+    output: text
+    omit_empty: true
+    strategy: free

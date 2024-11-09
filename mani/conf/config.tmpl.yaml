@@ -1,0 +1,15 @@
+# Import projects/tasks/env/specs/themes/targets from other configs [optional]
+# If this is set to true mani will override the url of any existing remote
+sync_remotes: false
+
+# List of environment variables that are available to all tasks
+# MANI_CONFIG: path to mani config global /mani/config:
+# read variable value from .env or specific directly
+env:
+  AUTHOR: "rsv"
+  DATE: $(date -u +"%Y-%m-%dT%H:%M:%S%Z")
+  TZ: America/La_Paz
+  MANI_CONFIG: $(echo $PATH_MANI_CONFIG)
+
+shell: bash
+

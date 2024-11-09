@@ -1,0 +1,20 @@
+targets:
+  tap-report:
+    projects: [tap-report]
+
+  all:
+    all: true
+
+  root:
+    projects: [playground]
+    cwd: true
+
+  odoo14-develop:
+    all: false
+    tags: [access]
+    cwd: false
+
+  discover_projects:
+    all: true
+    tags: [ node ]
+    cwd: true

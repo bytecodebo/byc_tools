@@ -1,0 +1,258 @@
+tasks:
+
+  c-home:
+    name: Cleanup home
+    desc: Remove unused directories in home and create some defaults
+    cmd: |
+      cd ~
+      rm Bookshelf Desktop Documents Pictures Public Templates Music Downloads Videos -rf
+      mkdir -p downloads tmp sandbox
+  
+
+  i-default-pkgs:
+    name: Install default packages
+    desc: install default packages
+    cmd: |
+      sudo apt-get update -y
+      sudo apt-get upgrade -y
+      sudo apt-get install sysstat vim vifm rfkill tree htop jq curl sqlite3 -y
+      sudo apt autoremove -y
+
+
+  c-slp:
+    desc: Sleep n seconds default 2
+    env:
+      delay: $delay
+    cmd: sleep $delay && echo "slept ${delay} seconds"
+
+  ping:
+    desc: ping server
+    spec: info
+    target: 
+      all: true
+    cmd: echo pong
+
+  real-ping:
+    desc: ping server
+    target: all
+    local: true
+    cmd: ping $S_HOST -c 2
+
+  s-ph:
+    desc: Print Config path
+    cmd: echo $MANI_CONFIG
+
+  s-pwd:
+    desc: Print path yml directory
+    cmd: pwd
+
+  s-gf:
+    desc: Print git directory and subFolders
+    theme: path_odoo
+    spec: path_odoo
+    register: $a_path
+    env:
+      e_path: "."
+      e_prefix: "/mnt/extra-addons"
+      e_suffix: ",\n\t"
+      e_filename: ".gitsubfolder"
+      e_maxdepth: 3
+    cmd: |
+      e_gitignore=".gitignore"
+      a_path=$(find $(pwd) -maxdepth $e_maxdepth  -type f -name $e_gitignore -o -name $e_filename | xargs dirname | sed -e 's|\.||g' -e '/^\s*$/d')
+      a_path=$(echo ${a_path//$e_path/$e_prefix})
+      echo "$a_path"
+
+
+  start-srv:
+    desc: Start to prepare server to install TeCore
+    tasks:
+      - task: ping
+      - task: c-home
+      - task: i-default-pkgs
+      - task: d-id
+      #- task: i-mani
+
+  c-target:
+    desc: Target direction
+    register: WEB_TARGET
+    cmd: |
+      AMBIENTE="prd"
+      if [ "${PRD}" != "1" ]; then
+        AMBIENTE="tst"
+      fi
+      WEB_TARGET="${WEB_HOST}_${AMBIENTE}"
+      DB_CONTAINER="db_${WEB_TARGET}"
+      WEB_CONTAINER="web_${WEB_TARGET}"
+      exact_instance="tcp_${INSTANCE}"
+      if [ "${INSTANCE}" = "tecore" ]; then
+        exact_instance="tec_${INSTANCE}"
+      fi
+      cd ~
+      odoo_instance="odoo14-dockers/${WEB_TARGET}"
+      mkdir -p "${odoo_instance}" "${odoo_instance}/addons" "${odoo_instance}/config"
+
+      cd odoo14-dockers/${WEB_TARGET}
+      # mani init
+      echo "$WEB_TARGET"
+
+
+  c-instance:
+    desc: Create Instance on Remote Server
+    env:
+      INSTANCE: tebilling
+      WEB_HOST: tebilling
+      EDITION: c
+      PRD: 2
+      PORTDB: 9072
+    tasks:
+      - task: c-target
+      - name: output
+        cmd: echo $WEB_TARGET_stdout
+      - task: dc-upload
+
+  c-test:
+      desc: Test
+      theme: default
+      spec:
+        output: table
+        ignore_errors: true
+        ignore_unreachable: true
+        any_errors_fatal: false
+        omit_empty_rows: true
+        omit_empty_columns: true
+      env:
+        msg: pong
+        date: $(date)
+        release: v1.0.0
+        num_lines: $(ls -1 | wc -l)
+      work_dir: ""
+      shell: bash
+      task: simple-1
+
+  dc-upload:
+    desc: upload file or directory
+    env:
+      SRC: ""
+      DEST: ""
+    local: true
+    cmd: rsync --recursive --verbose --archive --update $SRC $S_HOST:$DEST
+
+  c-load:
+    desc: Load field
+    theme: default
+    spec:
+      strategy: linear
+    env:
+      wimage: ""
+      src: "./tcp_srv/docker-compose.yml"
+      dest_file: "docker-compose.yml"
+    tasks:
+      - name: Make dir
+        cmd: |
+          echo "Creating dir: $dest"
+          cd ~
+          mkdir -p "odoo14-dockers/${wimage}"
+      - cmd: echo "/opt/odoo/odoo14-dockers/${wimage}"
+        register: dest
+      - task: dc-upload
+        #env:
+          #src: $(echo $src)
+
+  h-st:
+    desc: Start odoo develop
+    target:
+      all: false
+      tags: [ node ]
+    work_dir: /Users/robertsvx27/Documents/Devs/OdooRepo/odoo-repo14    
+    cmd: |      
+      od-byc14.sh -i $ODOO_INSTANCE -d $ODOO_DB
+
+
+  t-mp:
+    desc: Build project file in yaml extension
+    theme: discover_projects
+    spec: discover_projects
+    tags: [project]
+    target:
+      tags: [node]
+      cwd: true
+    env:
+      e_path: "./"
+      e_prefix: ""
+      e_suffix: ",\n\t"
+      e_folder: ".git"
+      e_maxdepth: 2
+    commands:
+      - name: output
+        cmd: |          
+          a_path=$(find $e_path -maxdepth $e_maxdepth  -type d -name $e_folder | xargs dirname)
+          a_path_all=$(echo ${a_path//$e_path/$e_prefix})
+          TEMPLATE="""
+            btc-facturacion-bob:
+              path: /Volumes/CW10/Devs-c/Odoo16Btc/btc-facturacion-bob
+              url: git@github.com:banticsoft/btc-facturacion-bob.git
+              clone: git clone \$MANI_PROJECT_BRANCH \$MANI_PROJECT_SINGLE_BRANCH \$MANI_PROJECT_URL \$MANI_PROJECT_PATH
+              branch: \$(echo \$BRANCH_NAME)
+              depth: \$(echo \$BRANCH_DEPTH)
+              single: \$(echo \$SINGLE_BRANCH)
+              tags: [btc16,fab16]\n"""
+          echo "$a_path_all"
+          #printf "$TEMPLATE"
+
+
+  t-ap:
+    desc: Add project to file in yaml extension
+    theme: discover_projects
+    spec: discover_projects
+    tags: [project]
+    target:
+      tags: [node]
+      cwd: true
+    env:
+      e_path: "./"
+      e_project: "btc_"
+      owner_git: ""
+      main_tag: ""
+    commands:
+      - name: output
+        cmd: |          
+          a_path=$(pwd)
+          a_path_all=$(echo ${a_path//$e_path})
+          prj_path="$a_path_all/$e_project"
+          TEMPLATE="""
+            $e_project:
+              path: $prj_path
+              url: git@github.com:$owner_git/$e_project.git
+              clone: git clone \$MANI_PROJECT_BRANCH \$MANI_PROJECT_SINGLE_BRANCH \$MANI_PROJECT_URL \$MANI_PROJECT_PATH
+              branch: \$(echo \$BRANCH_NAME)
+              depth: \$(echo \$BRANCH_DEPTH)
+              single: \$(echo \$SINGLE_BRANCH)
+              tags: [$main_tag]\n"""                    
+          echo "$TEMPLATE"
+
+
+  t-pp:
+    desc: Print projects in yaml format
+    theme: discover_projects
+    spec: discover_projects
+    tags: [project]
+    target:
+      tags: [node]
+      cwd: true
+    env:
+      e_path: "./"
+    cmd: |
+      TEMPLATE=""
+      for d in `fd '\.git$' --prune -utd -x echo {//} | cut -d/ -f2-`; do
+        TEMPLATE="""${TEMPLATE}
+        $d:
+          path: ${MANI_PROJECT_PATH}/${d}
+          url: \${MANI_PROJECT_URL}
+          clone: git clone \$MANI_PROJECT_BRANCH \$MANI_PROJECT_SINGLE_BRANCH \$MANI_PROJECT_URL \$MANI_PROJECT_PATH
+          branch: \$(echo \$BRANCH_NAME)
+          depth: \$(echo \$BRANCH_DEPTH)
+          single: \$(echo \$SINGLE_BRANCH)
+          tags: [$MAIN_TAG]\n"""
+      done
+      echo "$TEMPLATE"

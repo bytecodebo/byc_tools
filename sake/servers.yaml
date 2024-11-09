@@ -1,0 +1,7 @@
+servers:
+  localhost:
+    desc: localhost
+    host: localhost
+    local: true
+    work_dir: /tmp
+    tags: [local]
