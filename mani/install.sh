@@ -58,5 +58,5 @@ if test -w "$bindir"; then
 else
     sudo mv mani "$bindir/"
 fi
-
+"$bindir"/mani completion bash
 "$bindir"/mani --version
