@@ -13,6 +13,8 @@ Available tools
 
     Do not forget permission for the file:
 
-    chmod +x install.sh
+    chmod +x install.
+
+    bash install.sh
 
 3.- Check yaml file and mani cli to manage the build
