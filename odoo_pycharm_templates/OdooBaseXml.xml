@@ -1,0 +1,206 @@
+<templateSet group="OdooBaseXml">
+
+    <template name="od_form_header"
+              value="&lt;header&gt;&#10;    &lt;button name=&quot;$method_name$&quot; string=&quot;$string_label$&quot; class=&quot;oe_highlight&quot; states=&quot;&quot; type=&quot;object&quot;/&gt;&#10;    &lt;field name=&quot;state&quot; widget=&quot;statusbar&quot; statusbar_visible=&quot;&quot;/&gt;&#10;&lt;/header&gt;"
+              description="Add Form's header with 'state' and buttons" toReformat="false" toShortenFQNames="true">
+        <variable name="method_name" expression="" defaultValue="" alwaysStopAt="true"/>
+        <variable name="string_label" expression="" defaultValue="" alwaysStopAt="true"/>
+        <context>
+            <option name="XML" value="true"/>
+        </context>
+    </template>
+
+    <template name="od_form_title"
+              value="&lt;div class=&quot;oe_title&quot;&gt;&#10;    &lt;label for=&quot;name&quot; class=&quot;oe_edit_only&quot;/&gt;&#10;    &lt;h1&gt;&#10;        &lt;field name=&quot;name&quot; placeholder=&quot;......&quot;/&gt;&#10;    &lt;/h1&gt;&#10;&lt;/div&gt;"
+              description="Add title for the form view" toReformat="false" toShortenFQNames="true">
+        <context>
+            <option name="XML" value="true"/>
+        </context>
+    </template>
+
+    <template name="od_button_object"
+              value="&lt;button name=&quot;$button_method_name$&quot; class=&quot;oe_highlight&quot; type=&quot;object&quot; string=&quot;$button_method_label$&quot;/&gt;"
+              description="Add Odoo object button" toReformat="false" toShortenFQNames="true">
+        <variable name="button_method_name" expression="" defaultValue="" alwaysStopAt="true"/>
+        <variable name="$button_method_label$" expression="" defaultValue="" alwaysStopAt="true"/>
+        <context>
+            <option name="XML" value="true"/>
+        </context>
+    </template>
+    <template name="od_field_short" value="&lt;field name=&quot;$name$&quot;/&gt;"
+              description="Add field one tag on view" toReformat="true" toShortenFQNames="true">
+        <variable name="name" expression="" defaultValue="" alwaysStopAt="true"/>
+        <context>
+            <option name="XML" value="true"/>
+        </context>
+    </template>
+     <template name="od_field_options" value="&lt;field name=&quot;$field_name$&quot;  options=&quot;{'no_open': True, 'no_create_edit': True, 'no_create': True}&quot;/&gt;"
+              description="Add field with options attr on view" toReformat="true" toShortenFQNames="true">
+        <variable name="field_name" expression="" defaultValue="" alwaysStopAt="true"/>
+        <context>
+            <option name="XML" value="true"/>
+        </context>
+    </template>
+    <template name="od_field_large" value="&lt;field name=&quot;$name$&quot;&gt;$field_data$&lt;/field&gt;"
+              description="Add field open and close tag on view" toReformat="true" toShortenFQNames="true">
+        <variable name="name" expression="" defaultValue="" alwaysStopAt="true"/>
+        <variable name="field_data" expression="" defaultValue="" alwaysStopAt="true"/>
+        <context>
+            <option name="XML" value="true"/>
+        </context>
+    </template>
+    <template name="od_field_eval" value="&lt;field name=&quot;$name$&quot; eval=&quot;$field_eval$&quot;/&gt;"
+              description="Add field on view with eval attribute" toReformat="true" toShortenFQNames="true">
+        <variable name="name" expression="" defaultValue="" alwaysStopAt="true"/>
+        <variable name="field_eval" expression="" defaultValue="" alwaysStopAt="true"/>
+        <context>
+            <option name="XML" value="true"/>
+        </context>
+    </template>
+    <template name="od_field_inherit" value="&lt;field name=&quot;inherit&quot; ref=&quot;$field_ref$&quot;/&gt;"
+              description="Add field inherit ref on view" toReformat="true" toShortenFQNames="true">
+        <variable name="field_ref" expression="" defaultValue="" alwaysStopAt="true"/>
+        <context>
+            <option name="XML" value="true"/>
+        </context>
+    </template>
+    <template name="od_field_invisible" value="&lt;field name=&quot;$field_name$&quot; invisible=&quot;1&quot;/&gt;"
+              description="Add field on view with invisible attribute" toReformat="true" toShortenFQNames="true">
+        <variable name="field_name" expression="" defaultValue="" alwaysStopAt="true"/>
+        <context>
+            <option name="XML" value="true"/>
+        </context>
+    </template>
+    <template name="od_field_state"
+              value="&lt;field name=&quot;state&quot; widget=&quot;statusbar&quot; statusbar_visible=&quot;&quot;/&gt;"
+              description="Add state field with progressbar on view" toReformat="true" toShortenFQNames="true">
+        <context>
+            <option name="XML" value="true"/>
+        </context>
+    </template>
+     <template name="od_filter_domain_company"
+              value="&lt;field name=&quot;domain&quot;&gt;[('company_id', 'in', [False, allowed_company_ids[0] ])]&lt;/field&gt;"
+              description="Add filter domain of company_id on view" toReformat="true" toShortenFQNames="true">
+        <context>
+            <option name="XML" value="true"/>
+        </context>
+    </template>
+    <template name="od_filter_domain_context"
+              value="&lt;field name=&quot;context&quot;&gt;{'$field_key$': $field_value$ }&lt;/field&gt;"
+              description="Add filter context on view" toReformat="true" toShortenFQNames="true">
+         <variable name="field_key" expression="" defaultValue="" alwaysStopAt="true"/>
+        <variable name="field_value" expression="" defaultValue="" alwaysStopAt="true"/>
+        <context>
+            <option name="XML" value="true"/>
+        </context>
+    </template>
+    <template name="od_button_box"
+              value="&lt;div class=&quot;oe_button_box&quot; name=&quot;$button_box_name$&quot;&gt;&#10;        &lt;button name=&quot;toggle_active&quot; &#10;                type=&quot;object&quot;&#10;                confirm=&quot;$confirm_message$&quot;&#10;                class=&quot;oe_stat_button&quot; &#10;                icon=&quot;fa-archive&quot;&gt;&#10;                &lt;field name=&quot;active&quot; widget=&quot;boolean_button&quot; options='{&quot;terminology&quot;: &quot;archive&quot;}'/&gt;&#10;        &lt;/button&gt;&#10;&lt;/div&gt;"
+              description="Add Button Box on View" toReformat="false" toShortenFQNames="true">
+        <variable name="button_box_name" expression="" defaultValue="" alwaysStopAt="true"/>
+        <variable name="confirm_message" expression="" defaultValue="" alwaysStopAt="true"/>
+        <context>
+            <option name="XML" value="true"/>
+        </context>
+    </template>
+    <template name="od_button_action"
+              value="&lt;button name=&quot;%($action_xml_id$)d&quot; class=&quot;oe_highlight&quot; type=&quot;action&quot; string=&quot;ObjectButton&quot;/&gt;"
+              description="Add Odoo button" toReformat="false" toShortenFQNames="true">
+        <variable name="action_xml_id" expression="" defaultValue="" alwaysStopAt="true"/>
+        <context>
+            <option name="XML" value="true"/>
+        </context>
+    </template>
+
+
+    <template name="od_search_filter_domain"
+              value="&lt;filter name=&quot;filter_$filter_name$&quot; string=&quot;$filter_label$&quot; domain=&quot;[('$field_name$', '$domain_operator$', $field_value$)]&quot;/&gt;"
+              description="Add filter on view search" toReformat="true" toShortenFQNames="true">
+        <variable name="filter_name" expression="" defaultValue="" alwaysStopAt="true"/>
+        <variable name="filter_label" expression="" defaultValue="" alwaysStopAt="true"/>
+         <variable name="field_name" expression="" defaultValue="" alwaysStopAt="true"/>
+        <variable name="domain_operator" expression="" defaultValue="&#61;" alwaysStopAt="true"/>
+        <variable name="field_value" expression="" defaultValue="" alwaysStopAt="true"/>
+        <context>
+            <option name="XML" value="true"/>
+        </context>
+    </template>
+     <!--    <group string="Group By">
+                    <filter string="Model" name="grp_model" context="{'group_by':'obj_id'}"/>
+                </group>-->
+<template name="od_search_filter_group_by"
+              value="&lt;filter name=&quot;grp_$filter_name$&quot; string=&quot;$filter_label$&quot; context=&quot;{'group_by': '$field_name$'}&quot;/&gt;"
+
+              description="Add filter group by on view" toReformat="true" toShortenFQNames="true">
+        <variable name="filter_name" expression="" defaultValue="" alwaysStopAt="true"/>
+        <variable name="filter_label" expression="" defaultValue="" alwaysStopAt="true"/>
+         <variable name="field_name" expression="" defaultValue="" alwaysStopAt="true"/>
+        <context>
+            <option name="XML" value="true"/>
+        </context>
+    </template>
+    <template name="od_search_group_by"
+              value="&lt;group string=&quot;Group By&quot;&gt; &#10;
+&lt;filter name=&quot;grp_$filter_name$&quot; string=&quot;$filter_label$&quot; context=&quot;{'group_by': '$field_name$'}&quot;/&gt; &#10;
+               &lt;/group&gt;"
+              description="Add filter group by on view" toReformat="true" toShortenFQNames="true">
+        <variable name="filter_name" expression="" defaultValue="" alwaysStopAt="true"/>
+        <variable name="filter_label" expression="" defaultValue="" alwaysStopAt="true"/>
+         <variable name="field_name" expression="" defaultValue="" alwaysStopAt="true"/>
+        <context>
+            <option name="XML" value="true"/>
+        </context>
+    </template>
+      <template name="od_template_xml"
+              value="&lt;template name=&quot;od_$tmpl_name$&quot;&#10;
+                value=&quot;$tmpl_value$&quot;&#10;
+                description=&quot;$tmpl_description$&quot;&#10;
+                toReformat=&quot;$tmpl_reformat$&quot;
+                toShortenFQNames=&quot;$tmpl_fqnames$&quot;&gt;&#10;
+                &lt;context&gt;&#10;
+                &lt;option name=&quot;XML&quot; value=&quot;true&quot;/&gt;&#10;
+                &lt;/context&gt;&#10;
+                &lt;/template&gt;&#10;"
+              description="Add template to create xml template for snippets"
+                toReformat="true" toShortenFQNames="true">
+        <variable name="tmpl_name" expression="" defaultValue="" alwaysStopAt="true"/>
+        <variable name="tmpl_reformat" expression="" defaultValue="true" alwaysStopAt="true"/>
+         <variable name="tmpl_fqnames" expression="" defaultValue="true" alwaysStopAt="true"/>
+          <variable name="tmpl_description" expression="" defaultValue="" alwaysStopAt="true"/>
+          <variable name="tmpl_value" expression="" defaultValue="" alwaysStopAt="true"/>
+        <context>
+            <option name="XML" value="true"/>
+        </context>
+    </template>
+          <template name="od_template_python"
+              value="&lt;template name=&quot;od_$tmpl_name$&quot;&#10;
+                value=&quot;$tmpl_value$&quot;&#10;
+                description=&quot;$tmpl_description$&quot;&#10;
+                toReformat=&quot;$tmpl_reformat$&quot;
+                toShortenFQNames=&quot;$tmpl_fqnames$&quot;&gt;&#10;
+                &lt;context&gt;&#10;
+                &lt;option name=&quot;Python&quot; value=&quot;true&quot;/&gt;&#10;
+                &lt;/context&gt;&#10;
+                &lt;/template&gt;&#10;"
+              description="Add template to create python template for snippets"
+                toReformat="true" toShortenFQNames="true">
+        <variable name="tmpl_name" expression="" defaultValue="" alwaysStopAt="true"/>
+        <variable name="tmpl_reformat" expression="" defaultValue="&quot;true&quot;" alwaysStopAt="true"/>
+         <variable name="tmpl_fqnames" expression="" defaultValue="&quot;true&quot;" alwaysStopAt="true"/>
+          <variable name="tmpl_description" expression="" defaultValue="" alwaysStopAt="true"/>
+          <variable name="tmpl_value" expression="" defaultValue="" alwaysStopAt="true"/>
+        <context>
+            <option name="XML" value="true"/>
+        </context>
+    </template>
+    <template name="od_tmpl_variable"
+              value="&lt;variable name=&quot;$var_name$&quot; expression=&quot;&quot; defaultValue=&quot;&quot; alwaysStopAt=&quot;true&quot;/&gt;"
+              description="Add new Variable in Template"
+              toReformat="true" toShortenFQNames="true">
+         <variable name="var_name" expression="" defaultValue="" alwaysStopAt="true"/>
+        <context>
+            <option name="XML" value="true"/>
+        </context>
+    </template>
+
+</templateSet>

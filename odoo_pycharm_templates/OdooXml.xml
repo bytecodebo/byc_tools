@@ -1,0 +1,264 @@
+<templateSet group="OdooXml">
+  <template name="od_form" value="&lt;record id=&quot;view_$res_model$_form&quot; model=&quot;ir.ui.view&quot;&gt;&#10;
+        &lt;field name=&quot;name&quot;&gt;view.$object_name$.form&lt;/field&gt;&#10;
+        &lt;field name=&quot;model&quot;&gt;$object_name$&lt;/field&gt;&#10;
+        &lt;field name=&quot;arch&quot; type=&quot;xml&quot;&gt;&#10;
+        &lt;form string=&quot;&quot;&gt;&#10;
+          &lt;sheet&gt;&#10;
+            &lt;group&gt;&#10;
+              &lt;field name=&quot;name&quot;/&gt;&#10;
+            &lt;/group&gt;&#10;
+          &lt;/sheet&gt;&#10;
+        &lt;/form&gt;&#10;
+        &lt;/field&gt;&#10;&lt;/record&gt;" description="Create Form View" toReformat="false" toShortenFQNames="true">
+    <variable name="res_model" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="object_name" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="XML" value="true" />
+    </context>
+  </template>
+  <template name="od_form_hbgn" value="&lt;record id=&quot;view_$res_model$_form&quot; model=&quot;ir.ui.view&quot;&gt;&#10;
+        &lt;field name=&quot;name&quot;&gt;view.$object_name$.form&lt;/field&gt;&#10;
+        &lt;field name=&quot;model&quot;&gt;$object_name$&lt;/field&gt;&#10;
+        &lt;field name=&quot;arch&quot; type=&quot;xml&quot;&gt;&#10;
+        &lt;form string=&quot;&quot;&gt;&#10;
+          &lt;sheet&gt;&#10;
+            &lt;group&gt;&#10;
+              &lt;field name=&quot;name&quot;/&gt;&#10;
+            &lt;/group&gt;&#10;
+          &lt;/sheet&gt;&#10;
+        &lt;/form&gt;&#10;
+        &lt;/field&gt;&#10;&lt;/record&gt;"
+            description="Create Form View with header, sheet, groups and notebooks" toReformat="false" toShortenFQNames="true">
+    <variable name="res_model" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="object_name" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="XML" value="true" />
+    </context>
+  </template>
+  <template name="od_tree" value="&lt;record id=&quot;view_$tree_id$_tree&quot; model=&quot;ir.ui.view&quot;&gt;&#10;    &lt;field name=&quot;name&quot;&gt;view.$object_name$.tree&lt;/field&gt;&#10;    &lt;field name=&quot;model&quot;&gt;$object_name$&lt;/field&gt;&#10;    &lt;field name=&quot;arch&quot; type=&quot;xml&quot;&gt;&#10;        &lt;tree string=&quot;$tree_desc$&quot;&gt;&#10;            &lt;field name=&quot;name&quot;/&gt;&#10;        &lt;/tree&gt;&#10;    &lt;/field&gt;&#10;&lt;/record&gt;" description="Create Tree View" toReformat="false" toShortenFQNames="true">
+    <variable name="tree_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="object_name" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="tree_desc" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="XML" value="true" />
+    </context>
+  </template>
+  <template name="od_data" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&#10;&lt;odoo&gt;&#10;    &lt;data noupdate=&quot;0&quot;&gt;&#10;        &#10;        &#10;    &#10;    &lt;/data&gt;&#10;&lt;/odoo&gt;" description="Create the main tags" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="XML" value="true" />
+    </context>
+  </template>
+  <template name="od_form_inherit" value="&lt;!-- Inherit Form View to Modify it --&gt;&#10;&lt;record id=&quot;view_inherit_$res_model_name$_form&quot; model=&quot;ir.ui.view&quot;&gt;&#10;    &lt;field name=&quot;name&quot;&gt;view.inherit.$model$.form&lt;/field&gt;&#10;    &lt;field name=&quot;model&quot;&gt;$model$&lt;/field&gt;&#10;    &lt;field name=&quot;inherit_id&quot; ref=&quot;$parent_xml_id$&quot;/&gt;&#10;    &lt;field name=&quot;arch&quot; type=&quot;xml&quot;&gt;&#10;        &#10;        &lt;!-- position: after|before|replace|attributes|inside --&gt;&#10;        &lt;xpath expr=&quot;//field[@name='$field_name$']&quot; position=&quot;$xposition$&quot;&gt;&#10;            &lt;!-- Add your fields or attributes here --&gt;&#10;        &lt;/xpath&gt;&#10;        &#10;    &lt;/field&gt;&#10;&lt;/record&gt;" description="Inherit Existing Form View" toReformat="false" toShortenFQNames="true">
+    <variable name="res_model_name" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="model" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="parent_xml_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="field_name" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="xposition" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="XML" value="true" />
+    </context>
+  </template>
+  <template name="od_tree_inherit" value="&lt;record id=&quot;view_$tree_id$_inherit_tree&quot; model=&quot;ir.ui.view&quot;&gt;&#10;    &lt;field name=&quot;name&quot;&gt;view.$object_name$.inherit.tree&lt;/field&gt;&#10;    &lt;field name=&quot;model&quot;&gt;$object_name$&lt;/field&gt;&#10;    &lt;field name=&quot;inherit_id&quot; ref=&quot;$parent_xml_id$&quot;/&gt;&#10;    &lt;field name=&quot;arch&quot; type=&quot;xml&quot;&gt;&#10;&#10;        &lt;!-- position: after|before|replace|attributes|inside --&gt;&#10;        &lt;xpath expr=&quot;//field[@name='$field_name$']&quot; position=&quot;$xposition$&quot;&gt;&#10;            &lt;!-- Add your fields or attributes here --&gt;&#10;        &lt;/xpath&gt;&#10;        &#10;    &lt;/field&gt;&#10;&lt;/record&gt;" description="Inherit Existing Tree View" toReformat="false" toShortenFQNames="true">
+    <variable name="tree_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="object_name" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="parent_xml_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="field_name" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="xposition" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="XML" value="true" />
+    </context>
+  </template>
+  <template name="od_view_action" value="&lt;record id=&quot;action_$action_name$_view&quot; model=&quot;ir.actions.act_window&quot;&gt;&#10;    &lt;field name=&quot;name&quot;&gt;$action_desc$&lt;/field&gt;&#10;    &lt;field name=&quot;type&quot;&gt;ir.actions.act_window&lt;/field&gt;&#10;    &lt;field name=&quot;res_model&quot;&gt;$object_name$&lt;/field&gt;&#10;    &lt;field name=&quot;view_mode&quot;&gt;tree,form&lt;/field&gt;&#10;    &lt;field name=&quot;help&quot; type=&quot;html&quot;&gt;&#10;      &lt;p class=&quot;oe_view_nocontent_create&quot;&gt;&#10;        $desc_title$&#10;      &lt;/p&gt;&lt;p&gt;&#10;        $long_desc$ &#10;      &lt;/p&gt;&#10;    &lt;/field&gt;&#10;&lt;/record&gt;" description="Create new Action" toReformat="false" toShortenFQNames="true">
+    <variable name="action_name" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="action_desc" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="object_name" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="desc_title" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="long_desc" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="XML" value="true" />
+    </context>
+  </template>
+  <template name="od_menuitem_root" value="&lt;menuitem id=&quot;menu_$menu_id$_root&quot; name=&quot;$menu_label$&quot; sequence=&quot;$sequence$&quot;/&gt;" description="Create New Menu Item in the Upper bar" toReformat="false" toShortenFQNames="true">
+    <variable name="menu_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="menu_label" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="sequence" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="XML" value="true" />
+    </context>
+  </template>
+  <template name="od_menuitem_categ" value="&lt;menuitem id=&quot;menu_$menu_id$_categ&quot; name=&quot;$menu_label$&quot; parent=&quot;$parent_xml_id$&quot; sequence=&quot;$sequence$&quot;/&gt;" description="Create New Menu Item for Categroization" toReformat="false" toShortenFQNames="true">
+    <variable name="menu_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="menu_label" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="parent_xml_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="sequence" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="XML" value="true" />
+    </context>
+  </template>
+  <template name="od_menuitem_action" value="&lt;menuitem id=&quot;menu_$menu_categ_id$_view&quot; name=&quot;$menu_label$&quot; parent=&quot;$parent_xml_id$&quot; action=&quot;$action_xml_id$&quot; sequence=&quot;$sequence$&quot;/&gt;" description="Create New Menu Item for Actions" toReformat="false" toShortenFQNames="true">
+    <variable name="menu_categ_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="menu_label" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="parent_xml_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="action_xml_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="sequence" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="XML" value="true" />
+    </context>
+  </template>
+  <template name="od_group_view_named" value="&lt;group string=&quot;$group_label$&quot;&gt;&#10;
+    &lt;group&gt;&#10;
+    &lt;field name=&quot;$field_name1$&quot;/&gt;&#10;    &lt;/group&gt;&#10;    &lt;group&gt;&#10;
+     &lt;field name=&quot;$field_name2$&quot;/&gt;&#10;    &lt;/group&gt;&#10;&lt;/group&gt;"
+     description="Create Nested Groups with names" toReformat="false" toShortenFQNames="true">
+    <variable name="group_label" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="field_name1" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="field_name2" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="XML" value="true" />
+    </context>
+  </template>
+  <template name="od_group_view" value="&lt;group&gt;&#10;
+      &lt;group&gt;&#10; &lt;/group&gt;&#10;    &lt;group&gt;&#10; &lt;/group&gt;&#10;&lt;/group&gt;"
+      description="Create Nested Groups without name" toReformat="true" toShortenFQNames="true">
+    <context>
+      <option name="XML" value="true" />
+    </context>
+  </template>
+  <template name="od_domain" value="domain=&quot;[('', '=', ), ]&quot;" description="Add domain to your field" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="XML" value="true" />
+    </context>
+  </template>
+
+
+  <template name="od_security_category" value="&lt;record id=&quot;security_categ_$name$&quot; model=&quot;ir.module.category&quot;&gt;&#10;    &lt;field name=&quot;name&quot;&gt;$app_name$&lt;/field&gt;&#10;    &lt;field name=&quot;sequence&quot; eval=&quot;1&quot;/&gt;&#10;&lt;/record&gt;" description="Add new Security Category" toReformat="false" toShortenFQNames="true">
+    <variable name="name" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="app_name" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="XML" value="true" />
+    </context>
+  </template>
+  <template name="od_xpath" value="&lt;!-- position values: after|before|replace|attributes|inside --&gt;&#10;&lt;xpath expr=&quot;//field[@name='$field_name$']&quot; position=&quot;$position$&quot;&gt;&#10;    &lt;!-- Add your fields or attributes here --&gt;&#10;&lt;/xpath&gt;" description="Add the structure of xpath" toReformat="true" toShortenFQNames="true">
+    <variable name="field_name" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="position" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="XML" value="true" />
+    </context>
+  </template>
+  <template name="od_security_group" value="&lt;record id=&quot;group_$name$&quot; model=&quot;res.groups&quot;&gt;&#10;    &lt;field name=&quot;name&quot;&gt;$desc$&lt;/field&gt;&#10;    &lt;field name=&quot;category_id&quot; ref=&quot;$security_categ_xml_id$&quot;/&gt;&#10;    &lt;field name=&quot;implied_ids&quot; eval=&quot;[(4, ref('base.group_user'))]&quot;/&gt;&#10;&lt;/record&gt;" description="Create new Group, then assign new permissions" toReformat="false" toShortenFQNames="true">
+    <variable name="name" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="desc" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="security_categ_xml_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="XML" value="true" />
+    </context>
+  </template>
+  <template name="od_security_rule" value="&lt;record id=&quot;rule_$rule_id$&quot; model=&quot;ir.rule&quot;&gt;&#10;    &lt;field name=&quot;name&quot;&gt;$rule_name$&lt;/field&gt;&#10;    &lt;field ref=&quot;model_$model_name$&quot; name=&quot;model_id&quot;/&gt;&#10;    &lt;field name=&quot;domain_force&quot;&gt;[('', '', )]&lt;/field&gt;&#10;    &lt;field name=&quot;perm_write&quot; eval=&quot;1&quot;/&gt;&#10;    &lt;field name=&quot;perm_create&quot; eval=&quot;1&quot;/&gt;&#10;    &lt;field name=&quot;perm_read&quot; eval=&quot;1&quot;/&gt;&#10;    &lt;field name=&quot;perm_unlink&quot; eval=&quot;1&quot;/&gt;&#10;    &lt;!-- You can attach this rule to a specific group, Or make it Global --&gt;&#10;    &lt;field name=&quot;groups&quot; eval=&quot;[(4, ref('$group_xml_id$'))]&quot;/&gt;&#10;    &lt;!--&lt;field name=&quot;global&quot; eval=&quot;1&quot;/&gt; --&gt;&#10;&lt;/record&gt;" description="Create new Security Rules" toReformat="false" toShortenFQNames="true">
+    <variable name="rule_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="rule_name" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="model_name" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="group_xml_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="XML" value="true" />
+    </context>
+  </template>
+  <template name="od_notebook" value="&lt;notebook&gt;&#10;    &lt;page string=&quot;$page_label$&quot;&gt;&#10;        &lt;group&gt;&#10;            &lt;field name=&quot;$field_name$&quot;/&gt;&#10;        &lt;/group&gt;&#10;    &lt;/page&gt;&#10;&lt;/notebook&gt;" description="Add Notebook and a page" toReformat="false" toShortenFQNames="true">
+    <variable name="page_label" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="field_name" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="XML" value="true" />
+    </context>
+  </template>
+  <template name="od_record"
+    value="&lt;record model=&quot;$res_model$&quot; id=&quot;$record_id$&quot;&gt;&#10;
+        &lt;field name=&quot;name&quot;&gt;$field_name$&lt;/field&gt;&#10;
+        &lt;field name=&quot;active&quot;&gt;True&lt;/field&gt;&#10;
+        &lt;field name=&quot;enabled&quot;&gt;True&lt;/field&gt;&#10;
+        &lt;/record&gt;"
+        description="Add record model" toReformat="true" toShortenFQNames="true">
+    <variable name="res_model" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="record_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="field_name" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="XML" value="true" />
+    </context>
+  </template>
+   <template name="od_rec_m_mass"
+    value="&lt;record model=&quot;$res_model$&quot; model=&quot;ir.actions.server&quot;&gt;&#10;
+        &lt;field name=&quot;name&quot;&gt;$field_name$&lt;/field&gt;&#10;
+        &lt;field name=&quot;active&quot;&gt;True&lt;/field&gt;&#10;
+        &lt;field name=&quot;enabled&quot;&gt;True&lt;/field&gt;&#10;
+        &lt;/record&gt;"
+        description="Add record master model mass edit" toReformat="true" toShortenFQNames="true">
+    <variable name="res_model" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="record_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="field_name" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="XML" value="true" />
+    </context>
+  </template>
+  <template name="od_page" value="&lt;page string=&quot;$page_label$&quot;&gt;&#10;    &lt;group&gt;&#10;        &lt;field name=&quot;$field_name$&quot;/&gt;&#10;    &lt;/group&gt;&#10;&lt;/page&gt;" description="Add new page" toReformat="false" toShortenFQNames="true">
+    <variable name="page_label" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="field_name" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="XML" value="true" />
+    </context>
+  </template>
+
+  <template name="od_form_social" value="&lt;div class=&quot;oe_chatter&quot;&gt;&#10;
+     &lt;field name=&quot;message_follower_ids&quot;
+     &lt;field name=&quot;message_ids&quot;&#10; &lt;/div&gt;"
+     description="Add Social Messaging and followers." toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="XML" value="true" />
+    </context>
+  </template>
+
+  <template name="od_declare_qweb_reports" value="&lt;!-- QWeb Reports --&gt;&#10;&lt;!-- NAME &amp; FILE_NAME should be the same --&gt;&#10;        &lt;report&#10;            id=&quot;$report_name$_report&quot;&#10;            model=&quot;$res_model$&quot;&#10;            report_type=&quot;qweb-pdf&quot;&#10;            string=&quot;$report_label$&quot;&#10;            menu=&quot;True&quot;&#10;            name=&quot;$report_template_xml_id$&quot;&#10;            file=&quot;$report_template_xml_id$&quot;&#10;        /&gt;" description="Add a declaration for new QWeb reports" toReformat="false" toShortenFQNames="true">
+    <variable name="report_name" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="res_model" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="report_label" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="report_template_xml_id" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="XML_TEXT" value="true" />
+    </context>
+  </template>
+  <template name="od_add_qweb_template" value="&lt;template id=&quot;$UNIQUE_ID$&quot;&gt;&#10;    &lt;t t-call=&quot;web.html_container&quot;&gt;&#10;        &lt;t t-call=&quot;web.internal_layout&quot;&gt;&#10;        &lt;!-- &lt;t t-call=&quot;web.external_layout&quot;&gt; --&gt;&#10;            &lt;div class=&quot;page&quot;&gt;&#10;                &lt;h2&gt;TITLE FOR YOUR REPORT&lt;/h2&gt;&#10;                &lt;!--&#10;                Build your report here!&#10;                Do it in awesome way ;)&#10;                --&gt;&#10;            &lt;/div&gt;&#10;        &lt;/t&gt;&#10;    &lt;/t&gt;&#10;&lt;/template&gt;&#10;&#10;" description="Add the main structure of the QWeb Reports" toReformat="false" toShortenFQNames="true">
+    <variable name="UNIQUE_ID" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="XML" value="true" />
+    </context>
+  </template>
+  <template name="od_qweb_table" value="&lt;table class=&quot;table table-condensed&quot;&gt;&#10;    &lt;thead&gt;&#10;        &lt;tr&gt;&#10;            &lt;th&gt;$HEAD_1$&lt;/th&gt;&#10;            &lt;th class=&quot;text-right&quot;&gt;$HEAD_2$&lt;/th&gt;&#10;            &lt;th class=&quot;text-right&quot;&gt;$HEAD_3$&lt;/th&gt;&#10;            &lt;th class=&quot;text-right&quot;&gt;$HEAD_4$&lt;/th&gt;&#10;        &lt;/tr&gt;&#10;    &lt;/thead&gt;&#10;    &lt;tbody&gt;&#10;        &lt;tr t-foreach=&quot;$OBJECTS$&quot; t-as=&quot;$OBJECT$&quot;&gt;&#10;            &lt;td&gt;&lt;span t-esc=&quot;$OBJECT$.$field1$&quot;/&gt;&lt;/td&gt;&#10;            &lt;td class=&quot;text-right&quot;&gt;&lt;span t-esc=&quot;$OBJECT$.$field2$&quot;/&gt;&lt;/td&gt;&#10;            &lt;td class=&quot;text-right&quot;&gt;&lt;span t-esc=&quot;$OBJECT$.$field3$&quot;/&gt;&lt;/td&gt;&#10;            &lt;td class=&quot;text-right&quot;&gt;&lt;span t-esc=&quot;$OBJECT$.$field4$&quot;/&gt;&lt;/td&gt;&#10;        &lt;/tr&gt;        &#10;    &lt;/tbody&gt;&#10;&lt;/table&gt;&#10;" description="Add the main structure of the QWeb Tables" toReformat="false" toShortenFQNames="true">
+    <variable name="HEAD_1" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="HEAD_2" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="HEAD_3" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="HEAD_4" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="OBJECTS" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="OBJECT" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="field1" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="field2" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="field3" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="field4" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="XML_TEXT" value="true" />
+    </context>
+  </template>
+  <template name="od_search" value="&lt;record id=&quot;view_$model$_search&quot; model=&quot;ir.ui.view&quot;&gt;&#10;   &lt;field name=&quot;name&quot;&gt;view.$object$.search&lt;/field&gt;&#10;   &lt;field name=&quot;model&quot;&gt;$object$&lt;/field&gt;&#10;    &lt;field name=&quot;arch&quot; type=&quot;xml&quot;&gt;&#10;        &lt;search string=&quot;$search_view_label$&quot;&gt;&#10;      &lt;field name=&quot;name&quot; string=&quot;string&quot; domain=&quot;[('', 'ilike', )]&quot;/&gt;&#10;    &lt;/search&gt;&#10;   &lt;/field&gt;&#10;&lt;/record&gt;" description="Create Search View" toReformat="false" toShortenFQNames="true">
+    <variable name="model" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="object" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="search_view_label" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="XML" value="true" />
+    </context>
+  </template>
+  <template name="od_kanban" value="        &lt;record id=&quot;view_$res_model$_kanban&quot; model=&quot;ir.ui.view&quot;&gt;&#10;            &lt;field name=&quot;name&quot;&gt;view.$object_name$.kanban&lt;/field&gt;&#10;            &lt;field name=&quot;model&quot;&gt;$object_name$&lt;/field&gt;&#10;            &lt;field name=&quot;arch&quot; type=&quot;xml&quot;&gt;&#10;                &lt;kanban&gt;&#10;                    &lt;field name=&quot;name&quot;/&gt;&#10;                    &lt;templates&gt;&#10;                        &lt;t t-name=&quot;kanban-box&quot;&gt;&#10;                        &lt;/t&gt;&#10;                    &lt;/templates&gt;&#10;                &lt;/kanban&gt;&#10;            &lt;/field&gt;&#10;        &lt;/record&gt;&#10;" description="Create Kanban View" toReformat="false" toShortenFQNames="true">
+    <variable name="res_model" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="object_name" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="XML" value="true" />
+    </context>
+  </template>
+
+</templateSet>

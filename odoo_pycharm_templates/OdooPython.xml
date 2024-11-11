@@ -1,0 +1,263 @@
+<templateSet group="OdooPython">
+  <!-- Python templates -->
+  <template name="od_method_onchange"
+            value="@api.onchange('$FIELD_NAME$')&#10;def onchange_$FIELD_NAME$(self):&#10;    pass&#10;"
+            description="Add an onchange method" toReformat="false" toShortenFQNames="true">
+    <variable name="FIELD_NAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="od_method_compute_field"
+            value="@api.depends('$change_field$'$field_more$)
+            def _compute_$dependency_field$(self):&#10;
+              for rec in self:&#10;
+                $field_first$&#10;"
+            description="Add a method to compute fields"
+            toReformat="true" toShortenFQNames="true">
+    <variable name="change_field" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="field_more" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="dependency_field" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="field_first" expression="" defaultValue="&quot;pass&quot;" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="od_field_monetary"
+            value="$field_name$ = fields.Monetary(string=&quot;$field_label$&quot;, currency_field=&quot;$currency_field$&quot;,required=False, )" description="Add new field of type Monetary" toReformat="false" toShortenFQNames="true">
+    <variable name="field_name" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="field_label" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="currency_field" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="od_field_integer" value="$field_name$ = fields.Integer(string=&quot;$field_label$&quot;, required=False, )" description="Add new field of type Integer" toReformat="false" toShortenFQNames="true">
+    <variable name="field_name" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="field_label" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="od_field_char" value="$field_name$ = fields.Char(string=&quot;$field_label$&quot;, required=False, )" description="Add new field of type Char" toReformat="false" toShortenFQNames="true">
+    <variable name="field_name" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="field_label" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="od_field_text" value="$field_name$ = fields.Text(string=&quot;$field_label$\\4111&quot;, required=False, )" description="Add new field of type Text" toReformat="false" toShortenFQNames="true">
+    <variable name="field_name" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="field_label" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="od_field_many2one" value="$field_name$_id = fields.Many2one(comodel_name=&quot;$target_relation$&quot;, string=&quot;$field_label$&quot;, required=False, )" description="Add new field of type Many2one" toReformat="false" toShortenFQNames="true">
+    <variable name="field_name" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="target_relation" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="field_label" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="od_field_one2many" value="$field_name$_ids = fields.One2many(comodel_name=&quot;$target_relation$&quot;, inverse_name=&quot;$inverse_field$&quot;, string=&quot;$field_label$&quot;, required=False, )" description="Add new field of type One2many" toReformat="false" toShortenFQNames="true">
+    <variable name="field_name" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="target_relation" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="inverse_field" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="field_label" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="od_field_boolean" value="$field_name$ = fields.Boolean(string=&quot;$field_label$&quot;,  )" description="Add new field of type Boolean" toReformat="false" toShortenFQNames="true">
+    <variable name="field_name" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="field_label" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+   <template name="od_field_active_boolean"
+             value="active = fields.Boolean(default=True)"
+             description="Add new field active Boolean" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="od_field_enabled_boolean"
+             value="enabled = fields.Boolean(default=True)"
+             description="Add new field enabled Boolean" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="od_field_serialize" value="$field_name$ = fields.Serialize(string=&quot;$field_label$&quot;,  )" description="Add new field of type Serialize" toReformat="false" toShortenFQNames="true">
+    <variable name="field_name" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="field_label" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="od_field_html" value="$field_name$ = fields.Html(string=&quot;$field_label$&quot;,  )" description="Add new field of type HTML" toReformat="false" toShortenFQNames="true">
+    <variable name="field_name" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="field_label" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="od_field_float" value="$field_name$ = fields.Float(string=&quot;$field_label$&quot;,  required=False, )" description="Add new field of type Float" toReformat="false" toShortenFQNames="true">
+    <variable name="field_name" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="field_label" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="od_field_date" value="$field_name$ = fields.Date(string=&quot;$field_label$&quot;, required=False, default=fields.Date.context_today)" description="Add new field of type Date" toReformat="false" toShortenFQNames="true">
+    <variable name="field_name" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="field_label" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="od_field_datetime" value="$field_name$ = fields.Datetime(string=&quot;$field_label$&quot;, required=False, default=fields.Datetime.now)" description="Add new field of type DateTime" toReformat="false" toShortenFQNames="true">
+    <variable name="field_name" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="field_label" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="od_field_company" value="company_id = fields.Many2one(comodel_name=&quot;res.company&quot;, default=lambda self: self.env.company)"
+            description="Add new field of company_id" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="od_field_company_related"
+            value="company_id = fields.Many2one(comodel_name=&quot;res.company&quot;, related=&quot;$related_field_name$.company_id&quot;, store=True)"
+            description="Add new field of company_id with related o2m attr" toReformat="true" toShortenFQNames="true">
+     <variable name="related_field_name" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="od_field_selection" value="$field_name$ = fields.Selection(string=&quot;$field_label$&quot;, selection=[('', ''), ('', ''), ], required=False, )" description="Add new field of type Selection" toReformat="false" toShortenFQNames="true">
+    <variable name="field_name" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="field_label" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="od_field_many2many" value="$field_name$_ids = fields.Many2many(comodel_name=&quot;$target_relation$&quot;, relation=&quot;$relation$&quot;, column1=&quot;$col1$&quot;, column2=&quot;$col2$&quot;, string=&quot;$field_label$&quot;, )" description="Add new field of type Many2many" toReformat="false" toShortenFQNames="true">
+    <variable name="field_name" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="target_relation" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="relation" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="col1" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="col2" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="field_label" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="od_object_inherit" value="class $class_name$(models.Model):&#10;    _name = '$object_name$'&#10;    _inherit = '$object_name$'&#10;&#10;    $field_name$ = fields.Char(string=&quot;$field_label$&quot;, required=False, )&#10;" description="Inherit/Extend Existing Odoo Object" toReformat="false" toShortenFQNames="true">
+    <variable name="class_name" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="object_name" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="field_name" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="field_label" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="od_manifest" value="{&#10;    'name': '$short_name$',&#10;    'version': '$version$',&#10;    'summary': '$short_summary$',&#10;    'description': '$long_description$',&#10;    'category': '$category$',&#10;    'author': '$author$',&#10;    'website': '$website$',&#10;    'license': '$license$',&#10;    'depends': ['base', ],&#10;    'data': [''],&#10;    'demo': [''],&#10;    'installable': True,&#10;    'auto_install': False,&#10;    'external_dependencies': {&#10;        'python': [''],&#10;    }&#10;}" description="Create Odoo project manifest" toReformat="false" toShortenFQNames="true">
+    <variable name="short_name" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="version" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="short_summary" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="long_description" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="category" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="author" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="website" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="license" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="od_import" value="from odoo import api, fields, models &#10;" description="Add basic Odoo import for new Odoo versions" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="od_object" value="class $class_name$(models.Model):&#10;    _name = '$object_name$'&#10;    _rec_name = 'name'&#10;    _description = '$desc$'&#10;&#10;    $field_name$ = fields.Char(string=&quot;$field_label$&quot;, required=False, )&#10;" description="Create New Odoo Object" toReformat="false" toShortenFQNames="true">
+    <variable name="class_name" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="object_name" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="desc" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="field_name" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="field_label" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="od_method_create_change_vals"
+            value="@api.model
+            def create(self, values):&#10;
+              # Add code here&#10;
+              for vals in values:&#10;
+                $field_first$ &#10;
+              return super().create(values)&#10;"
+            description="Add a method create change values before saved"
+            toReformat="true" toShortenFQNames="true">
+    <variable name="field_first" expression="" defaultValue="&quot;pass&quot;" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="od_method_create_change_record"
+            value="@api.model
+            def create(self, values):&#10;
+              res = super().create(values)&#10;
+              # Add code here&#10;
+              for rec in res:&#10;
+                $field_first$ &#10;
+              return res&#10;"
+            description="Add a method create change records after saved"
+            toReformat="true" toShortenFQNames="true">
+    <variable name="field_first" expression="" defaultValue="&quot;pass&quot;" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="od_method_write"
+            value="def write(self, values):&#10;
+              # Add code here &#10;
+              $field_start$&#10;
+              return super().write(values)&#10;"
+            description="Add a method write"
+            toReformat="true" toShortenFQNames="true">
+    <variable name="field_start" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="od_field_binary" value="$field_name$ = fields.Binary(string=&quot;$field_label$&quot;,  )" description="Add new field of type Binary" toReformat="false" toShortenFQNames="true">
+    <variable name="field_name" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="field_label" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="Python" value="true" />
+    </context>
+  </template>
+  <template name="od_method_copy"
+            value="@api.returns('self', lambda value: value.id)
+            def copy(self, default=None):&#10;
+              default = dict(default or {})&#10;
+              if '$field_name$' not in default:&#10;
+                default['$field_name$'] = _(&quot;%s (Copy)&quot;) % self.$field_name$&#10;
+              record_copied = super($class_name$, self.with_context(ctx_from_copy=True)).copy(default)&#10;
+              return record_copied&#10;"
+            description="add method copy inherit"
+            toReformat="true" toShortenFQNames="true">
+    <variable name="field_name" expression="" defaultValue="&quot;name&quot;" alwaysStopAt="true"/>
+    <variable name="class_name" expression="" defaultValue="" alwaysStopAt="true"/>
+    <context>
+      <option name="Python" value="true"/>
+    </context>
+  </template>
+
+</templateSet>

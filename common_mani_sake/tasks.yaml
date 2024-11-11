@@ -256,3 +256,19 @@ tasks:
           tags: [$MAIN_TAG]\n"""
       done
       echo "$TEMPLATE"
+
+  w-dir:
+    desc: Print current working dir
+    tags: [ project ]
+    target:
+      tags: [ node ]
+    cmd: |
+      WORKING_DIR="/Users/robertsvx27/Documents/Devs/OdooRepo/odoo-repo16"
+      cd "${WORKING_DIR}/"
+      #echo "$(pwd)"
+
+  wn-dir:
+    desc: Print current working dir
+    cwd: false
+    cmd: |
+      echo "$(pwd)"

@@ -42,7 +42,7 @@ env:
   AUTHOR: "rsaavedra"
 
   # Shell command substitution
-  DATE: $(date -u +"%Y-%m-%dT%H:%M:%S%Z")
+  DATE: $(echo date -u +"%Y-%m-%dT%H:%M:%S%Z")
 
 # Shell used for commands [optional]
 # If you use any other program than bash, zsh, sh, node, and python

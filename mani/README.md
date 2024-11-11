@@ -13,7 +13,7 @@ Available tools
 
     Do not forget permission for the file:
 
-    chmod +x install.
+    chmod +x install.sh
 
     bash install.sh
 
