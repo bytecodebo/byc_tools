@@ -163,9 +163,14 @@
       <option name="XML" value="true" />
     </context>
   </template>
-  <template name="od_notebook" value="&lt;notebook&gt;&#10;    &lt;page string=&quot;$page_label$&quot;&gt;&#10;        &lt;group&gt;&#10;            &lt;field name=&quot;$field_name$&quot;/&gt;&#10;        &lt;/group&gt;&#10;    &lt;/page&gt;&#10;&lt;/notebook&gt;" description="Add Notebook and a page" toReformat="false" toShortenFQNames="true">
+  <template name="od_notebook"
+            value="&lt;notebook&gt;&#10;
+            &lt;page string=&quot;$page_label$&quot; name=&quot;pg_$pg_name$&quot;&gt;&#10;
+            &lt;/page&gt;&#10;
+            &lt;/notebook&gt;&#10;"
+            description="Add Notebook and a page" toReformat="true" toShortenFQNames="true">
     <variable name="page_label" expression="" defaultValue="" alwaysStopAt="true" />
-    <variable name="field_name" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="page_name" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="XML" value="true" />
     </context>
@@ -258,6 +263,15 @@
     <variable name="object_name" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="XML" value="true" />
+    </context>
+  </template>
+  <template name="od_field_sequence"
+            value="&lt;field name=&quot;$field_name$&quot; widget=&quot;handle&quot;/&gt;&#10;"
+            description="Add field sequence on view"
+            toReformat="true" toShortenFQNames="true">
+    <variable name="field_name" expression="" defaultValue="&quot;sequence&quot;" alwaysStopAt="true"/>
+    <context>
+      <option name="XML" value="true"/>
     </context>
   </template>
 

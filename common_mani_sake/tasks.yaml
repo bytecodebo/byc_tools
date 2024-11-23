@@ -7,7 +7,6 @@ tasks:
       cd ~
       rm Bookshelf Desktop Documents Pictures Public Templates Music Downloads Videos -rf
       mkdir -p downloads tmp sandbox
-  
 
   i-default-pkgs:
     name: Install default packages
@@ -17,7 +16,6 @@ tasks:
       sudo apt-get upgrade -y
       sudo apt-get install sysstat vim vifm rfkill tree htop jq curl sqlite3 -y
       sudo apt autoremove -y
-
 
   c-slp:
     desc: Sleep n seconds default 2
@@ -63,7 +61,6 @@ tasks:
       a_path=$(echo ${a_path//$e_path/$e_prefix})
       echo "$a_path"
 
-
   start-srv:
     desc: Start to prepare server to install TeCore
     tasks:
@@ -95,7 +92,6 @@ tasks:
       cd odoo14-dockers/${WEB_TARGET}
       # mani init
       echo "$WEB_TARGET"
-
 
   c-instance:
     desc: Create Instance on Remote Server
@@ -145,7 +141,7 @@ tasks:
       strategy: linear
     env:
       wimage: ""
-      src: "./tcp_srv/docker-compose.yml"
+      src: "./../docker-compose.yml"
       dest_file: "docker-compose.yml"
     tasks:
       - name: Make dir
@@ -164,10 +160,9 @@ tasks:
     target:
       all: false
       tags: [ node ]
-    work_dir: /Users/robertsvx27/Documents/Devs/OdooRepo/odoo-repo14    
+    work_dir: ''
     cmd: |      
       od-byc14.sh -i $ODOO_INSTANCE -d $ODOO_DB
-
 
   t-mp:
     desc: Build project file in yaml extension
@@ -200,7 +195,6 @@ tasks:
           echo "$a_path_all"
           #printf "$TEMPLATE"
 
-
   t-ap:
     desc: Add project to file in yaml extension
     theme: discover_projects
@@ -211,7 +205,7 @@ tasks:
       cwd: true
     env:
       e_path: "./"
-      e_project: "btc_"
+      e_project: "byc_"
       owner_git: ""
       main_tag: ""
     commands:
@@ -230,7 +224,6 @@ tasks:
               single: \$(echo \$SINGLE_BRANCH)
               tags: [$main_tag]\n"""                    
           echo "$TEMPLATE"
-
 
   t-pp:
     desc: Print projects in yaml format
@@ -263,7 +256,7 @@ tasks:
     target:
       tags: [ node ]
     cmd: |
-      WORKING_DIR="/Users/robertsvx27/Documents/Devs/OdooRepo/odoo-repo16"
+      WORKING_DIR="path_to_working_dir"
       cd "${WORKING_DIR}/"
       #echo "$(pwd)"
 

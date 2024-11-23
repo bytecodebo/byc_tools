@@ -41,6 +41,22 @@
             <option name="XML" value="true"/>
         </context>
     </template>
+       <template name="od_attr_options"
+                 value="&#10;options=&quot;{'no_open': True, 'no_create_edit': True, 'no_create': True}&quot; "
+              description="Add options attributes on field"
+                 toReformat="true" toShortenFQNames="true">
+        <context>
+            <option name="XML" value="true"/>
+        </context>
+    </template>
+      <template name="od_field_company_multi"
+                value="&lt;field name=&quot;company_id&quot; groups=&quot;base.group_multi_company&quot;
+                options=&quot;{'no_open': True, 'no_create_edit': True, 'no_create': True}&quot;/&gt;"
+              description="Add field company with options and group" toReformat="true" toShortenFQNames="true">
+        <context>
+            <option name="XML" value="true"/>
+        </context>
+    </template>
     <template name="od_field_large" value="&lt;field name=&quot;$name$&quot;&gt;$field_data$&lt;/field&gt;"
               description="Add field open and close tag on view" toReformat="true" toShortenFQNames="true">
         <variable name="name" expression="" defaultValue="" alwaysStopAt="true"/>
@@ -202,5 +218,25 @@
             <option name="XML" value="true"/>
         </context>
     </template>
-
+    <template name="od_field_boolean_toggle"
+              value="&lt;field name=&quot;$field_name$&quot; widget=&quot;boolean_toggle&quot; $more_attr$/&gt;"
+              description="Add field boolean with toggle widget"
+              toReformat="true" toShortenFQNames="true">
+        <variable name="field_name" expression="" defaultValue="" alwaysStopAt="true"/>
+        <variable name="more_attr" expression="" defaultValue="" alwaysStopAt="true"/>
+        <context>
+            <option name="XML" value="true"/>
+        </context>
+    </template>
+ <template name="od_field_invisible_option"
+           value="&lt;field name=&quot;$field_name$&quot; attrs=&quot;{'invisible': [('$field_option_name$', '!=', '$option_value$')]}&quot;/&gt;"
+           description="Add field on view with invisible option"
+           toReformat="true" toShortenFQNames="true">
+        <variable name="field_name" expression="" defaultValue="" alwaysStopAt="true"/>
+     <variable name="field_option_name" expression="" defaultValue="" alwaysStopAt="true"/>
+     <variable name="option_value" expression="" defaultValue="" alwaysStopAt="true"/>
+        <context>
+            <option name="XML" value="true"/>
+        </context>
+    </template>
 </templateSet>
