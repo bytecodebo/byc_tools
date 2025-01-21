@@ -1,0 +1,214 @@
+<templateSet group="SQLScript">
+  <template name="sq_variable_reference_get" value="${hiveconf:$variable_name$}" description="refer to hiveconf variable" toReformat="true" toShortenFQNames="false" deactivated="true">
+    <variable name="variable_name" expression="" defaultValue="&quot;label_feature_table_name&quot;" alwaysStopAt="true" />
+    <context>
+      <option name="SQL" value="true" />
+    </context>
+  </template>
+  <template name="sq_variable_assignment_initialization_set" value="set hiveconf:$variable_name$=$value$;&#10;" description="initialize hiveconf variable" toReformat="true" toShortenFQNames="false" deactivated="true">
+    <variable name="variable_name" expression="" defaultValue="&quot;segment_id_presence_children_in_house_hold&quot;" alwaysStopAt="true" />
+    <variable name="value" expression="" defaultValue="&quot;\'\'&quot;" alwaysStopAt="true" />
+    <context>
+      <option name="SQL" value="true" />
+    </context>
+  </template>
+  <template name="sq_alter table rename" value="ALTER TABLE old_tablename RENAME TO new_tablename;&#10;" description="initialize hiveconf variable" toReformat="true" toShortenFQNames="false" deactivated="true">
+    <context>
+      <option name="SQL" value="true" />
+    </context>
+  </template>
+  <template name="sq_update set" value="update $table_name$ set $col$ = $value$ where $END$;" description="update values in a table" toReformat="true" toShortenFQNames="false" deactivated="true">
+    <variable name="table_name" expression="" defaultValue="&quot;a&quot;" alwaysStopAt="true" />
+    <variable name="col" expression="complete()" defaultValue="" alwaysStopAt="true" />
+    <variable name="value" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="SQL_STATEMENT" value="true" />
+    </context>
+  </template>
+  <template name="sq_use kli02;" value="use kli02;" description="use kli02;" toReformat="true" toShortenFQNames="false" deactivated="true">
+    <context>
+      <option name="SQL" value="true" />
+    </context>
+  </template>
+  <template name="sq_drop table" value="drop table $tgt_gup_segment_ids_string_features_1212_rand_00001$;" description="drop table" toReformat="true" toShortenFQNames="false" deactivated="true">
+    <variable name="tgt_gup_segment_ids_string_features_1212_rand_00001" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="SQL" value="true" />
+    </context>
+  </template>
+  <template name="sq_create external table" value="use kli02;&#10;&#10;CREATE EXTERNAL TABLE $tgt_gup_segment_ids_string_id_segments_demo_geo_keywords_regions_sampled_0011$ (&#10;  `id` bigint,&#10;  `segments` array&lt;struct&lt;segment_id:bigint,expiration_time:int,attribute:string,type:string,source:string,ts:int,segment_type_mask:int,sources:array&lt;struct&lt;source:string,ts:int,expiration_time:int&gt;&gt;&gt;&gt;,&#10;  `demo` struct&lt;gender:string,gender_confidence:double,gender_is_inferred:boolean,age_bucket:string,age_bucket_confidence:double,age_bucket_is_inferred:boolean,updated_at:bigint,gender_best_known:string,age:int,age_best_known:int,age_confidence:double,age_is_inferred:boolean&gt;,&#10;  `geo` struct&lt;city:array&lt;struct&lt;woe_id:bigint,intensity:double,recency:bigint,source:string&gt;&gt;,state:array&lt;struct&lt;woe_id:bigint,intensity:double,recency:bigint,source:string&gt;&gt;,country:array&lt;struct&lt;woe_id:bigint,intensity:double,recency:bigint,source:string&gt;&gt;,dma:array&lt;struct&lt;data_value:string,intensity:double,recency:bigint&gt;&gt;,zip:array&lt;struct&lt;data_value:string,intensity:double,recency:bigint&gt;&gt;&gt;,&#10;  `keywords` struct&lt;page_view:struct&lt;wiki:array&lt;struct&lt;word:string,intensity:double,recency:bigint,ann_type:int&gt;&gt;,yct:array&lt;struct&lt;word:string,intensity:double,recency:bigint,ann_type:int&gt;&gt;,interest:array&lt;struct&lt;word:string,intensity:double,recency:bigint,ann_type:int&gt;&gt;,pg:array&lt;struct&lt;word:string,intensity:double,recency:bigint,ann_type:int&gt;&gt;&gt;,page_click:struct&lt;wiki:array&lt;struct&lt;word:string,intensity:double,recency:bigint,ann_type:int&gt;&gt;,yct:array&lt;struct&lt;word:string,intensity:double,recency:bigint,ann_type:int&gt;&gt;,interest:array&lt;struct&lt;word:string,intensity:double,recency:bigint,ann_type:int&gt;&gt;,pg:array&lt;struct&lt;word:string,intensity:double,recency:bigint,ann_type:int&gt;&gt;&gt;,ad_click:struct&lt;wiki:array&lt;struct&lt;word:string,intensity:double,recency:bigint,ann_type:int&gt;&gt;,yct:array&lt;struct&lt;word:string,intensity:double,recency:bigint,ann_type:int&gt;&gt;,interest:array&lt;struct&lt;word:string,intensity:double,recency:bigint,ann_type:int&gt;&gt;,pg:array&lt;struct&lt;word:string,intensity:double,recency:bigint,ann_type:int&gt;&gt;&gt;,ad_conv:struct&lt;wiki:array&lt;struct&lt;word:string,intensity:double,recency:bigint,ann_type:int&gt;&gt;,yct:array&lt;struct&lt;word:string,intensity:double,recency:bigint,ann_type:int&gt;&gt;,interest:array&lt;struct&lt;word:string,intensity:double,recency:bigint,ann_type:int&gt;&gt;,pg:array&lt;struct&lt;word:string,intensity:double,recency:bigint,ann_type:int&gt;&gt;&gt;,search_click:struct&lt;wiki:array&lt;struct&lt;word:string,intensity:double,recency:bigint,ann_type:int&gt;&gt;,yct:array&lt;struct&lt;word:string,intensity:double,recency:bigint,ann_type:int&gt;&gt;,interest:array&lt;struct&lt;word:string,intensity:double,recency:bigint,ann_type:int&gt;&gt;,pg:array&lt;struct&lt;word:string,intensity:double,recency:bigint,ann_type:int&gt;&gt;&gt;,search_query:struct&lt;wiki:array&lt;struct&lt;word:string,intensity:double,recency:bigint,ann_type:int&gt;&gt;,yct:array&lt;struct&lt;word:string,intensity:double,recency:bigint,ann_type:int&gt;&gt;,interest:array&lt;struct&lt;word:string,intensity:double,recency:bigint,ann_type:int&gt;&gt;,pg:array&lt;struct&lt;word:string,intensity:double,recency:bigint,ann_type:int&gt;&gt;&gt;,mail:struct&lt;wiki:array&lt;struct&lt;word:string,intensity:double,recency:bigint,ann_type:int&gt;&gt;,yct:array&lt;struct&lt;word:string,intensity:double,recency:bigint,ann_type:int&gt;&gt;,interest:array&lt;struct&lt;word:string,intensity:double,recency:bigint,ann_type:int&gt;&gt;,pg:array&lt;struct&lt;word:string,intensity:double,recency:bigint,ann_type:int&gt;&gt;&gt;&gt;,&#10;  `regions` array&lt;string&gt;,&#10;  `segment_ids_string` string&#10;)&#10; LOCATION $hdfs_path$;&#10;" description="initialize hiveconf variable" toReformat="true" toShortenFQNames="false" deactivated="true">
+    <variable name="tgt_gup_segment_ids_string_id_segments_demo_geo_keywords_regions_sampled_0011" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="hdfs_path" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="SQL" value="true" />
+    </context>
+  </template>
+  <template name="sq_create table load" value="-- create from scratch&#10;CREATE TABLE IF NOT EXISTS $hiking$ (&#10;&#9;id INT,&#10;&#9;name STRING,&#10;&#9;region STRING,&#10;&#9;distance FLOAT,&#10;&#9;Altitude INT,&#10;&#9;suiteHiking INT )&#10;&#9;ROW FORMAT DELIMITED&#10;&#9;FIELDS TERMINATED BY '\t'&#10;&#9;LINES TERMINATED BY '\n' ;&#10;LOAD DATA INPATH $hdfs_path$&#10;OVERWRITE INTO TABLE $hiking$;&#10;" description="initialize hiveconf variable" toReformat="true" toShortenFQNames="false" deactivated="true">
+    <variable name="hiking" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="hdfs_path" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="SQL" value="true" />
+    </context>
+  </template>
+  <template name="sq_create table as select" value="CREATE TABLE $tgt_gup_segment_ids_string_id_segments_demo_geo_keywords_regions_test_1$ AS&#10;  (SELECT *&#10;   FROM $tgt_gup_segment_ids_string_id_segments_demo_geo_keywords_regions$&#10;   LIMIT 1);" description="initialize hiveconf variable" toReformat="true" toShortenFQNames="false" deactivated="true">
+    <variable name="tgt_gup_segment_ids_string_id_segments_demo_geo_keywords_regions_test_1" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="tgt_gup_segment_ids_string_id_segments_demo_geo_keywords_regions" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="SQL" value="true" />
+    </context>
+  </template>
+  <template name="sq_create view as select" value="create view view1 as&#10;select * from table1 limit 1;" description="" toReformat="true" toShortenFQNames="false" deactivated="true">
+    <context>
+      <option name="SQL" value="true" />
+    </context>
+  </template>
+  <template name="sq_show create table" value="show create table $tgt_gup_segment_ids_string_id_segments_demo_geo_keywords_regions_sampled_0011$;&#10;" description="show create table" toReformat="true" toShortenFQNames="false" deactivated="true">
+    <variable name="tgt_gup_segment_ids_string_id_segments_demo_geo_keywords_regions_sampled_0011" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="SQL" value="true" />
+    </context>
+  </template>
+  <template name="sq_insert overwrite directory select" value="insert overwrite directory '$file$'&#10;select * from $table1$;" description="" toReformat="true" toShortenFQNames="false" deactivated="true">
+    <variable name="file" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="table1" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="SQL" value="true" />
+    </context>
+  </template>
+  <template name="sq_export select" value="insert overwrite directory '$file$'&#10;select * from $table1$;" description="" toReformat="true" toShortenFQNames="false" deactivated="true">
+    <variable name="file" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="table1" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="SQL" value="true" />
+    </context>
+  </template>
+  <template name="sq_select table limit 1" value="SELECT * FROM $temp_drivers$ limit 1;" description="" toReformat="true" toShortenFQNames="false" deactivated="true">
+    <variable name="temp_drivers" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="SQL" value="true" />
+    </context>
+  </template>
+  <template name="sq_select where rand &lt;" value="create $segment_ids_string_id_segments_demo_geo_keywords_regions_test$_sampled_rate_0_$sampled_rate$ AS&#10;SELECT *&#10;FROM $segment_ids_string_id_segments_demo_geo_keywords_regions_test$&#10;WHERE rand() &lt; 0.$sampled_rate$;" description="" toReformat="true" toShortenFQNames="false" deactivated="true">
+    <variable name="segment_ids_string_id_segments_demo_geo_keywords_regions_test" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="sampled_rate" expression="" defaultValue="&quot;01&quot;" alwaysStopAt="true" />
+    <context>
+      <option name="SQL" value="true" />
+    </context>
+  </template>
+  <template name="sq_create temporary table expression in select" value="(SELECT $0$ as $col1$&#10;UNION ALL&#10;SELECT $1$ as $col1$&#10;) t" description="" toReformat="true" toShortenFQNames="false" deactivated="true">
+    <variable name="0" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="col1" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="1" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="SQL" value="true" />
+    </context>
+  </template>
+  <template name="sq_select join" value="SELECT $table_on_the_left_alias$.$table_on_the_left_column_to_select$,&#10;      $table_on_the_right_alias$.$table_on_the_right_column_to_select$&#10;FROM&#10;  $table_on_the_left$ as $table_on_the_left_alias$ &#10;INNER JOIN&#10;  $table_on_the_right$ as $table_on_the_right_alias$&#10;On $table_on_the_left_alias$.$common_column_from_table_on_the_left$ = $table_on_the_right_alias$.$common_column_from_table_on_the_right$" description="" toReformat="true" toShortenFQNames="false" deactivated="true">
+    <variable name="common_column_from_table_on_the_left" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="common_column_from_table_on_the_right" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="table_on_the_left" expression="" defaultValue="&quot;(SELECT 0 as col1, array('A','B','C') as col2 UNION ALL SELECT 1 as col1, array('E','F','G') as col2 )&quot;" alwaysStopAt="true" />
+    <variable name="table_on_the_left_column_to_select" expression="" defaultValue="&quot;*&quot;" alwaysStopAt="true" />
+    <variable name="table_on_the_right" expression="" defaultValue="&quot;(SELECT 0 as col1, array('D','B','C') as col2 UNION ALL SELECT 1 as col1, array('E','F','G') as col2 )&quot;" alwaysStopAt="true" />
+    <variable name="table_on_the_right_column_to_select" expression="" defaultValue="&quot;*&quot;" alwaysStopAt="true" />
+    <variable name="table_on_the_left_alias" expression="" defaultValue="&quot;table_on_the_left&quot;" alwaysStopAt="true" />
+    <variable name="table_on_the_right_alias" expression="" defaultValue="&quot;table_on_the_right&quot;" alwaysStopAt="true" />
+    <context>
+      <option name="SQL" value="true" />
+    </context>
+  </template>
+  <template name="sq_header: use kli02; set hive.variable.substitute=true;" value="use kli02;&#10;set hive.variable.substitute=true;&#10;" description="header: use kli02; set hive.variable.substitute=true;" toReformat="true" toShortenFQNames="false" deactivated="true">
+    <context>
+      <option name="SQL" value="true" />
+    </context>
+  </template>
+  <template name="sq_equality_test_expression" value="$column_name$=$value$" description="" toReformat="true" toShortenFQNames="false" deactivated="true">
+    <variable name="column_name" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="value" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="SQL" value="true" />
+    </context>
+  </template>
+  <template name="sq_is not null expression" value="$suiteHiking$ IS NOT NULL" description="" toReformat="true" toShortenFQNames="false" deactivated="true">
+    <variable name="suiteHiking" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="SQL" value="true" />
+    </context>
+  </template>
+  <template name="sq_like expression" value="$column_name$ LIKE '%$contains$%'" description="" toReformat="true" toShortenFQNames="false" deactivated="true">
+    <variable name="column_name" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="contains" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="SQL" value="true" />
+    </context>
+  </template>
+  <template name="sq_explode lateral view UDTF" value="&#10;SELECT $original_column$,&#10;      $exploded_column$&#10;FROM&#10;  (SELECT 0 as col1, array('A','B','C') as col2&#10;UNION ALL&#10;SELECT 1 as col1, array('E','F','G') as col2&#10;) t LATERAL VIEW explode($array_field_to_explode$) te As $exploded_column$;" description="" toReformat="true" toShortenFQNames="false" deactivated="true">
+    <variable name="original_column" expression="" defaultValue="&quot;col1&quot;" alwaysStopAt="true" />
+    <variable name="exploded_column" expression="" defaultValue="&quot;col2_exploded&quot;" alwaysStopAt="true" />
+    <variable name="array_field_to_explode" expression="" defaultValue="&quot;col2&quot;" alwaysStopAt="true" />
+    <context>
+      <option name="SQL" value="true" />
+    </context>
+  </template>
+  <template name="sq_if value expression" value="if($boolean_expression$, 1,  0) $AS_label$" description="" toReformat="true" toShortenFQNames="false" deactivated="true">
+    <variable name="boolean_expression" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="AS_label" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="SQL" value="true" />
+    </context>
+  </template>
+  <template name="sq_select aggregate group by UDAF" value="SELECT $region$, $avg$($distance$) $as_columnname$ FROM $hiking$ GROUP BY $region$;" description="" toReformat="true" toShortenFQNames="false" deactivated="true">
+    <variable name="region" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="avg" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="distance" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="as_columnname" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="hiking" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="SQL" value="true" />
+    </context>
+  </template>
+  <template name="sq_select count" value="select count(1) from $table$;" description="" toReformat="true" toShortenFQNames="true" deactivated="true">
+    <variable name="table" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="SQL_STATEMENT" value="true" />
+    </context>
+  </template>
+  <template name="sq_sel" value="select * from $table$$END$;" description="select all rows from a table" toReformat="true" toShortenFQNames="false" deactivated="true">
+    <variable name="table" expression="complete()" defaultValue="" alwaysStopAt="true" />
+    <context />
+  </template>
+  <template name="sq_selw" value="select * from $table$ $alias$ where $alias$.$END$;" description="select specific rows from a table" toReformat="true" toShortenFQNames="false" deactivated="true">
+    <variable name="table" expression="complete()" defaultValue="" alwaysStopAt="true" />
+    <variable name="alias" expression="complete()" defaultValue="&quot;alias&quot;" alwaysStopAt="true" />
+    <context />
+  </template>
+  <template name="sq_selc" value="select count(*) from $table$ $alias$ where $alias$.$END$;" description="select the number of specific rows in a table" toReformat="true" toShortenFQNames="false" deactivated="true">
+    <variable name="table" expression="complete()" defaultValue="" alwaysStopAt="true" />
+    <variable name="alias" expression="complete()" defaultValue="&quot;alias&quot;" alwaysStopAt="true" />
+    <context />
+  </template>
+  <template name="sq_ins" value="insert into $table$ ($columns$) values ($info$$END$);" description="insert rows into a table" toReformat="true" toShortenFQNames="false" deactivated="true">
+    <variable name="table" expression="complete()" defaultValue="" alwaysStopAt="true" />
+    <variable name="columns" expression="complete()" defaultValue="" alwaysStopAt="true" />
+    <variable name="info" expression="showParameterInfo()" defaultValue="" alwaysStopAt="true" />
+    <context />
+  </template>
+  <template name="sq_upd" value="update $table_name$ set $col$ = $value$ where $END$;" description="update values in a table" toReformat="true" toShortenFQNames="false" deactivated="true">
+    <variable name="table_name" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="col" expression="complete()" defaultValue="" alwaysStopAt="true" />
+    <variable name="value" expression="" defaultValue="" alwaysStopAt="true" />
+    <context />
+  </template>
+  <template name="sq_tab" value="create table $table$ (&#10;  $col$ $type$ $null$$END$&#10;);" description="new table definition" toReformat="true" toShortenFQNames="false" deactivated="true">
+    <variable name="table" expression="" defaultValue="&quot;new_table&quot;" alwaysStopAt="true" />
+    <variable name="col" expression="" defaultValue="&quot;col&quot;" alwaysStopAt="true" />
+    <variable name="type" expression="" defaultValue="&quot;int&quot;" alwaysStopAt="true" />
+    <variable name="null" expression="" defaultValue="&quot;not null&quot;" alwaysStopAt="true" />
+    <context />
+  </template>
+  <template name="sq_col" value="$col$ $type$ $null$$END$" description="new column definition" toReformat="true" toShortenFQNames="false" deactivated="true">
+    <variable name="col" expression="" defaultValue="&quot;col&quot;" alwaysStopAt="true" />
+    <variable name="type" expression="" defaultValue="&quot;int&quot;" alwaysStopAt="true" />
+    <variable name="null" expression="" defaultValue="&quot;not null&quot;" alwaysStopAt="true" />
+    <context />
+  </template>
+</templateSet>
