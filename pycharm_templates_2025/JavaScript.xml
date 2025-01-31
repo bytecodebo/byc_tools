@@ -1,0 +1,9 @@
+<templateSet group="JavaScript">
+  <template name="js_mod_xp" value="module.exports = $END$" description="Export statement - module.exports = a" toReformat="true" toShortenFQNames="true">
+    <context />
+  </template>
+  <template name="js_arf" value="const $NAME$ = () =&gt; {&#10;$SELECTION$&#10;}" description="Surround with Arrow Function" toReformat="true" toShortenFQNames="true">
+    <variable name="NAME" expression="complete()" defaultValue="" alwaysStopAt="true" />
+    <context />
+  </template>
+</templateSet>

@@ -1,12 +1,35 @@
 <templateSet group="OdooXml">
-  <template name="od_form" value="&lt;record id=&quot;view_$res_model$_form&quot; model=&quot;ir.ui.view&quot;&gt;&#10;         &lt;field name=&quot;name&quot;&gt;view.$object_name$.form&lt;/field&gt;&#10;         &lt;field name=&quot;model&quot;&gt;$object_name$&lt;/field&gt;&#10;         &lt;field name=&quot;arch&quot; type=&quot;xml&quot;&gt;&#10;         &lt;form string=&quot;&quot;&gt;&#10;           &lt;sheet&gt;&#10;             &lt;group&gt;&#10;               &lt;field name=&quot;name&quot;/&gt;&#10;             &lt;/group&gt;&#10;           &lt;/sheet&gt;&#10;         &lt;/form&gt;&#10;         &lt;/field&gt;&#10;&lt;/record&gt;" description="Create Form View" toReformat="false" toShortenFQNames="true">
+  <template name="od_form" value="&lt;record id=&quot;view_$res_model$_form&quot; model=&quot;ir.ui.view&quot;&gt;&#10;
+        &lt;field name=&quot;name&quot;&gt;view.$object_name$.form&lt;/field&gt;&#10;
+        &lt;field name=&quot;model&quot;&gt;$object_name$&lt;/field&gt;&#10;
+        &lt;field name=&quot;arch&quot; type=&quot;xml&quot;&gt;&#10;
+        &lt;form string=&quot;&quot;&gt;&#10;
+          &lt;sheet&gt;&#10;
+            &lt;group&gt;&#10;
+              &lt;field name=&quot;name&quot;/&gt;&#10;
+            &lt;/group&gt;&#10;
+          &lt;/sheet&gt;&#10;
+        &lt;/form&gt;&#10;
+        &lt;/field&gt;&#10;&lt;/record&gt;" description="Create Form View" toReformat="false" toShortenFQNames="true">
     <variable name="res_model" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="object_name" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="XML" value="true" />
     </context>
   </template>
-  <template name="od_form_hbgn" value="&lt;record id=&quot;view_$res_model$_form&quot; model=&quot;ir.ui.view&quot;&gt;&#10;         &lt;field name=&quot;name&quot;&gt;view.$object_name$.form&lt;/field&gt;&#10;         &lt;field name=&quot;model&quot;&gt;$object_name$&lt;/field&gt;&#10;         &lt;field name=&quot;arch&quot; type=&quot;xml&quot;&gt;&#10;         &lt;form string=&quot;&quot;&gt;&#10;           &lt;sheet&gt;&#10;             &lt;group&gt;&#10;               &lt;field name=&quot;name&quot;/&gt;&#10;             &lt;/group&gt;&#10;           &lt;/sheet&gt;&#10;         &lt;/form&gt;&#10;         &lt;/field&gt;&#10;&lt;/record&gt;" description="Create Form View with header, sheet, groups and notebooks" toReformat="false" toShortenFQNames="true">
+  <template name="od_form_hbgn" value="&lt;record id=&quot;view_$res_model$_form&quot; model=&quot;ir.ui.view&quot;&gt;&#10;
+        &lt;field name=&quot;name&quot;&gt;view.$object_name$.form&lt;/field&gt;&#10;
+        &lt;field name=&quot;model&quot;&gt;$object_name$&lt;/field&gt;&#10;
+        &lt;field name=&quot;arch&quot; type=&quot;xml&quot;&gt;&#10;
+        &lt;form string=&quot;&quot;&gt;&#10;
+          &lt;sheet&gt;&#10;
+            &lt;group&gt;&#10;
+              &lt;field name=&quot;name&quot;/&gt;&#10;
+            &lt;/group&gt;&#10;
+          &lt;/sheet&gt;&#10;
+        &lt;/form&gt;&#10;
+        &lt;/field&gt;&#10;&lt;/record&gt;"
+            description="Create Form View with header, sheet, groups and notebooks" toReformat="false" toShortenFQNames="true">
     <variable name="res_model" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="object_name" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
@@ -83,7 +106,11 @@
       <option name="XML" value="true" />
     </context>
   </template>
-  <template name="od_group_view_named" value="&lt;group string=&quot;$group_label$&quot;&gt;&#10;     &lt;group&gt;&#10;     &lt;field name=&quot;$field_name1$&quot;/&gt;&#10;    &lt;/group&gt;&#10;    &lt;group&gt;&#10;      &lt;field name=&quot;$field_name2$&quot;/&gt;&#10;    &lt;/group&gt;&#10;&lt;/group&gt;" description="Create Nested Groups with names" toReformat="false" toShortenFQNames="true">
+  <template name="od_group_view_named" value="&lt;group string=&quot;$group_label$&quot;&gt;&#10;
+    &lt;group&gt;&#10;
+    &lt;field name=&quot;$field_name1$&quot;/&gt;&#10;    &lt;/group&gt;&#10;    &lt;group&gt;&#10;
+     &lt;field name=&quot;$field_name2$&quot;/&gt;&#10;    &lt;/group&gt;&#10;&lt;/group&gt;"
+     description="Create Nested Groups with names" toReformat="false" toShortenFQNames="true">
     <variable name="group_label" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="field_name1" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="field_name2" expression="" defaultValue="" alwaysStopAt="true" />
@@ -91,7 +118,9 @@
       <option name="XML" value="true" />
     </context>
   </template>
-  <template name="od_group_view" value="&lt;group&gt;&#10;       &lt;group&gt;&#10; &lt;/group&gt;&#10;    &lt;group&gt;&#10; &lt;/group&gt;&#10;&lt;/group&gt;" description="Create Nested Groups without name" toReformat="true" toShortenFQNames="true">
+  <template name="od_group_view" value="&lt;group&gt;&#10;
+      &lt;group&gt;&#10; &lt;/group&gt;&#10;    &lt;group&gt;&#10; &lt;/group&gt;&#10;&lt;/group&gt;"
+      description="Create Nested Groups without name" toReformat="true" toShortenFQNames="true">
     <context>
       <option name="XML" value="true" />
     </context>
@@ -101,6 +130,8 @@
       <option name="XML" value="true" />
     </context>
   </template>
+
+
   <template name="od_security_category" value="&lt;record id=&quot;security_categ_$name$&quot; model=&quot;ir.module.category&quot;&gt;&#10;    &lt;field name=&quot;name&quot;&gt;$app_name$&lt;/field&gt;&#10;    &lt;field name=&quot;sequence&quot; eval=&quot;1&quot;/&gt;&#10;&lt;/record&gt;" description="Add new Security Category" toReformat="false" toShortenFQNames="true">
     <variable name="name" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="app_name" expression="" defaultValue="" alwaysStopAt="true" />
@@ -108,14 +139,9 @@
       <option name="XML" value="true" />
     </context>
   </template>
-  <template name="od_xpath" value="&lt;xpath expr=&quot;//$field$[@$key$='$value$']$more$&quot; position=&quot;$position$&quot;&gt;&#10; $start$ &#10;&lt;/xpath&gt;"
-            description="Add the structure of xpath" toReformat="true" toShortenFQNames="true">
-    <variable name="field" expression="" defaultValue="field" alwaysStopAt="true" />
-    <variable name="key" expression="" defaultValue="name" alwaysStopAt="true" />
-    <variable name="value" expression="" defaultValue="name" alwaysStopAt="true" />
-    <variable name="more" expression="" defaultValue="" alwaysStopAt="true" />
+  <template name="od_xpath" value="&lt;!-- position values: after|before|replace|attributes|inside --&gt;&#10;&lt;xpath expr=&quot;//field[@name='$field_name$']&quot; position=&quot;$position$&quot;&gt;&#10;    &lt;!-- Add your fields or attributes here --&gt;&#10;&lt;/xpath&gt;" description="Add the structure of xpath" toReformat="true" toShortenFQNames="true">
+    <variable name="field_name" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="position" expression="" defaultValue="" alwaysStopAt="true" />
-    <variable name="start" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="XML" value="true" />
     </context>
@@ -137,14 +163,25 @@
       <option name="XML" value="true" />
     </context>
   </template>
-  <template name="od_notebook" value="&lt;notebook&gt;&#10;             &lt;page string=&quot;$page_label$&quot; name=&quot;pg_$pg_name$&quot;&gt;&#10;             &lt;/page&gt;&#10;             &lt;/notebook&gt;&#10;" description="Add Notebook and a page" toReformat="true" toShortenFQNames="true">
+  <template name="od_notebook"
+            value="&lt;notebook&gt;&#10;
+            &lt;page string=&quot;$page_label$&quot; name=&quot;pg_$pg_name$&quot;&gt;&#10;
+            &lt;/page&gt;&#10;
+            &lt;/notebook&gt;&#10;"
+            description="Add Notebook and a page" toReformat="true" toShortenFQNames="true">
     <variable name="page_label" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="page_name" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="XML" value="true" />
     </context>
   </template>
-  <template name="od_record" value="&lt;record model=&quot;$res_model$&quot; id=&quot;$record_id$&quot;&gt;&#10;         &lt;field name=&quot;name&quot;&gt;$field_name$&lt;/field&gt;&#10;         &lt;field name=&quot;active&quot;&gt;True&lt;/field&gt;&#10;         &lt;field name=&quot;enabled&quot;&gt;True&lt;/field&gt;&#10;         &lt;/record&gt;" description="Add record model" toReformat="true" toShortenFQNames="true">
+  <template name="od_record"
+    value="&lt;record model=&quot;$res_model$&quot; id=&quot;$record_id$&quot;&gt;&#10;
+        &lt;field name=&quot;name&quot;&gt;$field_name$&lt;/field&gt;&#10;
+        &lt;field name=&quot;active&quot;&gt;True&lt;/field&gt;&#10;
+        &lt;field name=&quot;enabled&quot;&gt;True&lt;/field&gt;&#10;
+        &lt;/record&gt;"
+        description="Add record model" toReformat="true" toShortenFQNames="true">
     <variable name="res_model" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="record_id" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="field_name" expression="" defaultValue="" alwaysStopAt="true" />
@@ -152,7 +189,13 @@
       <option name="XML" value="true" />
     </context>
   </template>
-  <template name="od_rec_m_mass" value="&lt;record model=&quot;$res_model$&quot; model=&quot;ir.actions.server&quot;&gt;&#10;         &lt;field name=&quot;name&quot;&gt;$field_name$&lt;/field&gt;&#10;         &lt;field name=&quot;active&quot;&gt;True&lt;/field&gt;&#10;         &lt;field name=&quot;enabled&quot;&gt;True&lt;/field&gt;&#10;         &lt;/record&gt;" description="Add record master model mass edit" toReformat="true" toShortenFQNames="true">
+   <template name="od_rec_m_mass"
+    value="&lt;record model=&quot;$res_model$&quot; model=&quot;ir.actions.server&quot;&gt;&#10;
+        &lt;field name=&quot;name&quot;&gt;$field_name$&lt;/field&gt;&#10;
+        &lt;field name=&quot;active&quot;&gt;True&lt;/field&gt;&#10;
+        &lt;field name=&quot;enabled&quot;&gt;True&lt;/field&gt;&#10;
+        &lt;/record&gt;"
+        description="Add record master model mass edit" toReformat="true" toShortenFQNames="true">
     <variable name="res_model" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="record_id" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="field_name" expression="" defaultValue="" alwaysStopAt="true" />
@@ -167,11 +210,16 @@
       <option name="XML" value="true" />
     </context>
   </template>
-  <template name="od_form_social" value="&lt;div class=&quot;oe_chatter&quot;&gt;&#10;      &lt;field name=&quot;message_follower_ids&quot;      &lt;field name=&quot;message_ids&quot;&#10; &lt;/div&gt;" description="Add Social Messaging and followers." toReformat="false" toShortenFQNames="true">
+
+  <template name="od_form_social" value="&lt;div class=&quot;oe_chatter&quot;&gt;&#10;
+     &lt;field name=&quot;message_follower_ids&quot;
+     &lt;field name=&quot;message_ids&quot;&#10; &lt;/div&gt;"
+     description="Add Social Messaging and followers." toReformat="false" toShortenFQNames="true">
     <context>
       <option name="XML" value="true" />
     </context>
   </template>
+
   <template name="od_declare_qweb_reports" value="&lt;!-- QWeb Reports --&gt;&#10;&lt;!-- NAME &amp; FILE_NAME should be the same --&gt;&#10;        &lt;report&#10;            id=&quot;$report_name$_report&quot;&#10;            model=&quot;$res_model$&quot;&#10;            report_type=&quot;qweb-pdf&quot;&#10;            string=&quot;$report_label$&quot;&#10;            menu=&quot;True&quot;&#10;            name=&quot;$report_template_xml_id$&quot;&#10;            file=&quot;$report_template_xml_id$&quot;&#10;        /&gt;" description="Add a declaration for new QWeb reports" toReformat="false" toShortenFQNames="true">
     <variable name="report_name" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="res_model" expression="" defaultValue="" alwaysStopAt="true" />
@@ -217,20 +265,14 @@
       <option name="XML" value="true" />
     </context>
   </template>
-  <template name="od_field_sequence" value="&lt;field name=&quot;$field_name$&quot; widget=&quot;handle&quot;/&gt;&#10;" description="Add field sequence on view" toReformat="true" toShortenFQNames="true">
-    <variable name="field_name" expression="" defaultValue="&quot;sequence&quot;" alwaysStopAt="true" />
+  <template name="od_field_sequence"
+            value="&lt;field name=&quot;$field_name$&quot; widget=&quot;handle&quot;/&gt;&#10;"
+            description="Add field sequence on view"
+            toReformat="true" toShortenFQNames="true">
+    <variable name="field_name" expression="" defaultValue="&quot;sequence&quot;" alwaysStopAt="true"/>
     <context>
-      <option name="XML" value="true" />
+      <option name="XML" value="true"/>
     </context>
   </template>
-  <template name="od_form_inherit_view" value="&lt;record id=&quot;view_inherit_$module_short_name$_form_$model_name$&quot; model=&quot;ir.ui.view&quot;&gt;&#10;    &lt;field name=&quot;name&quot;&gt;view.inherit.form.$model$&lt;/field&gt;&#10;    &lt;field name=&quot;model&quot;&gt;$model$&lt;/field&gt;&#10;    &lt;field name=&quot;inherit_id&quot; ref=&quot;$parent_xml_id$&quot;/&gt;&#10;    &lt;field name=&quot;arch&quot; type=&quot;xml&quot;&gt;&#10;        $first_action$&#10;    &lt;/field&gt;&#10;&lt;/record&gt;" description="Inherit Existing Form View v2" toReformat="false" toShortenFQNames="true">
-    <variable name="module_short_name" expression="" defaultValue="" alwaysStopAt="true" />
-    <variable name="model_name" expression="" defaultValue="" alwaysStopAt="true" />
-    <variable name="model" expression="regularExpression(model_name, &quot;_&quot;, &quot;.&quot;)" defaultValue="model_name" alwaysStopAt="true" />
-    <variable name="parent_xml_id" expression="" defaultValue="" alwaysStopAt="true" />
-    <variable name="first_action" expression="" defaultValue="" alwaysStopAt="true" />
-    <context>
-      <option name="XML" value="true" />
-    </context>
-  </template>
+
 </templateSet>
