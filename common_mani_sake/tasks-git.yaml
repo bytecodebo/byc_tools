@@ -36,6 +36,11 @@ tasks:
     tags: [git]
     cmd: git checkout -b $branch
 
+  g-tb:
+    desc: Tracking branch
+    tags: [git]
+    cmd: git checkout --track origin/$branch
+
   g-pl:
     desc: Pull origin git
     tags: [git]
@@ -183,7 +188,38 @@ tasks:
     commands:
       - task: g-cm      
       - task: g-ph 
-  
+
+  g-mr:
+    desc: Mirror Repository params e_s=source e_t=target e_wd=working dir
+    tags: [ git ]
+    target:
+      tags: [ node ]
+    env:
+      e_s:
+      e_t:
+      e_as: OCA
+      e_at: bytecodebo
+      e_wd: .
+    cmd: |
+      # e.g. e_as=OCA e_s=connector  e_at=user e_t=repo
+      # the task complete paths
+      source_repo="git@github.com:${e_as}/${e_s}.git"
+      target_repo="git@github.com:${e_at}/${e_t}.git"            
+      file_path="${MANI_SCRIPT_SHARE}/functions.sh"      
+      current_wd=$(${file_path} -p ${e_wd})
+      echo "*** Cloning source repo ***"
+      eval "git clone --bare ${source_repo} ${current_wd}/aux-${e_t}"      
+      eval "cd ${current_wd}/aux-${e_t}"
+      echo "*** Send push repo ***"
+      eval "git push --mirror ${target_repo}"
+      eval "cd ${current_wd}/"
+      echo "*** Cloning mirrored repo ***"
+      eval "git clone ${target_repo} ${current_wd}/${e_t}"
+      echo "*** Remove bare repo ***"
+      eval "rm -r ${current_wd}/aux-${e_t}"
+      echo "*** Final Process ***" 
+      
+
 specs:
   table:
     output: text
