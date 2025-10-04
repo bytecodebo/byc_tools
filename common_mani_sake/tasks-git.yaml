@@ -5,7 +5,6 @@ tasks:
       all: false
     cmd: |     
       find ${PROJECT_PATH} -type d -exec test -d {}/.git \; -prune -print
-  
 
   g-ft:
     desc: Fetch git
@@ -13,11 +12,28 @@ tasks:
     cmd: git fetch
 
   g-st:
-    desc: show working tree status (git)
+    desc: show working tree status (git) igem=ignore empty true|false
     spec: custom
     tags: [git]
     target: all
-    cmd: git status
+    env:
+      igem: false
+    cmd: |
+      git status
+
+  g-cst:
+    desc: check status (git)
+    tags: [ git ]
+    spec: filtered_ot
+    cmd: |
+      git status -s
+
+  g-csx:
+    desc: check status (git)
+    tags: [ git ]
+    spec: filtered_text
+    cmd: |
+      git status -s
 
   g-ba:
     desc: git branch -a
@@ -40,7 +56,17 @@ tasks:
     desc: Pull origin git
     tags: [git]
     cmd: git pull origin $branch
-  
+
+  g-plr:
+    desc: Git Pull [$remote, $branch]
+    tags: [ git ]
+    env:
+      remote: origin
+      branch:
+    cmd: |
+      branch=${branch:-$BRANCH_NAME}
+      git pull $remote $branch
+
   g-ad:
     desc: Git add
     tags: [git]
@@ -70,7 +96,7 @@ tasks:
       msg: ""
     commands:
       - task: g-ad
-      - cmd: |        
+      - cmd: |
           if [ "$msg" = "" ]; then
             DATE=$(date -u +"%Y-%m-%dT%H:%M:%S%Z")
             msg="automatic commit at $DATE"
@@ -95,8 +121,20 @@ tasks:
     desc: Push branch git
     tags: [git]
     env:
-      branch: 14.0dev
-    cmd: git push origin $branch
+      branch:
+    cmd: |
+      if [ "$branch" = "" ]; then
+        branch="${BRANCH_NAME}"
+      fi
+      echo "branch ph from LOCAL ${branch}"
+      git push origin $branch
+
+  g-send:
+    desc: add commit and push git
+    tags: [git]
+    commands:
+      - task: g-cm
+      - task: g-ph
 
   g-lcm:
     desc: show last commit
@@ -172,18 +210,7 @@ tasks:
 
   pwd: pwd
 
-  g-send:
-    desc: cm and ph git
-    tags: [git]
-    spec:
-      output: text
-      omit_empty: true
-    env:      
-      msg: ""
-    commands:
-      - task: g-cm      
-      - task: g-ph 
-  
+
 specs:
   table:
     output: text

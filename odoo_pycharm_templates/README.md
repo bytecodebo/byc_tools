@@ -8,7 +8,7 @@ https://github.com/mohamedmagdy/odoo-pycharm-templates
 ## Installation
 This version use manual and bash installation.
 
-All templates start with `od_`
+All templates start with `od_` (current versions)
 
 ### Manual installation
 

@@ -10,7 +10,7 @@ if [ ! -d "${TEMPLATE_FOLDER}" ]; then
   echo "${TEMPLATE_FOLDER}"
   exit 1
 fi
-EXPORT_FILES=('OdooBaseXml.xml' 'OdooXml.xml' 'OdooPython.xml' 'other.xml')
+EXPORT_FILES=('OdooBaseXml.xml' 'OdooBase2Xml.xml' 'OdooOldPython.xml' 'OdooBasePython.xml' 'OdooExtras.xml' 'OdooForkXml.xml' 'ExtrasShellScripts.xml')
 for f_names in "${EXPORT_FILES[@]}" ; do
     echo "select file.... $f_names"
     # shellcheck disable=SC2027

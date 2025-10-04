@@ -1,4 +1,18 @@
 specs:
+  filtered_ot:
+    output: table
+    parallel: false
+    ignore_errors: false
+    omit_empty: true
+
+  filtered_text:
+    output: text
+    parallel: false
+    ignore_errors: true
+    omit_empty: true
+    omit_empty_rows: true
+    omit_empty_columns: true
+
   advanced:
     output: table
     parallel: false
