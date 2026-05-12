@@ -1,0 +1,329 @@
+tasks:
+  g-pl-sm:
+    desc: Git pull para repos de clientes (con submódulos)
+    tags: [ git, sm ]
+    cmd: |
+      git pull --recurse-sbms
+      git sbm update --init --recursive --remote
+
+  g-syc-sm:
+    desc: Switch branch git para repos de clientes (con submódulos)
+    tags: [git, sm]
+    env:
+      branch: 14.0
+    cmd: |
+      git checkout $branch
+      git sbm update --init --recursive
+
+  g-st-sm0:
+    desc: show working tree status compacto incluyendo submódulos
+    spec: custom
+    tags: [ git ]
+    target: all
+    env:
+      igem: false
+    cmd: |
+      # Estado principal resumido
+      echo "📊 $(basename $(pwd)):"
+      # git status -s || git status
+      git status
+      # Submódulos en una línea cada uno
+      if [ -f ".gitmodules" ]; then
+        echo ""
+        echo "📦 Submódulos:"
+        git submodule foreach --quiet '
+          BRANCH=$(git branch --show-current 2>/dev/null || echo "detached")
+          COMMIT=$(git rev-parse --short HEAD)
+          CHANGES=$(git status --porcelain | wc -l)
+          UNPUSHED=$(git log --oneline @{u}..HEAD 2>/dev/null | wc -l)
+
+          if [ $CHANGES -gt 0 ] || [ $UNPUSHED -gt 0 ]; then
+            echo "  ⚠️ [$BRANCH] $name  $COMMIT - cambios:$CHANGES push:$UNPUSHED"
+          else
+            echo "  ✅ [$BRANCH] $name $COMMIT"
+          fi
+        '
+      fi
+
+  g-st-sm1:
+    desc: show working tree status con colores y submódulos
+    spec: custom
+    tags: [ git ]
+    target: all
+    env:
+      igem: false
+    cmd: |
+      # Colores ANSI
+      RED='\033[0;31m'
+      GREEN='\033[0;32m'
+      YELLOW='\033[1;33m'
+      BLUE='\033[0;34m'
+      NC='\033[0m' # No Color
+
+      # Función para colorear
+      color_echo() {
+        echo -e "${2}${1}${NC}"
+      }
+
+      # Estado principal
+      echo ""
+      color_echo "📊 Repositorio: $(basename $(pwd))" "$BLUE"
+      echo "=========================================="
+
+      # Verificar si hay cambios
+      if git status --porcelain | grep -q .; then
+        color_echo "⚠️ Hay cambios sin commitear" "$YELLOW"
+        git status -s
+      else
+        color_echo "✅ Working tree limpio" "$GREEN"
+      fi
+
+      # Submódulos
+      if [ -f ".gitmodules" ]; then
+        echo ""
+        color_echo "📦 Submódulos:" "$BLUE"
+        echo "------------------------------------------"
+
+        git sbm foreach --quiet '
+          BRANCH=$(git branch --show-current 2>/dev/null || echo "detached")
+          COMMIT=$(git rev-parse --short HEAD)
+          HAS_CHANGES=$(git status --porcelain | wc -l)
+          UNPUSHED=$(git log --oneline @{u}..HEAD 2>/dev/null | wc -l)
+
+          if [ $HAS_CHANGES -gt 0 ]; then
+            echo "  ${YELLOW}📝${NC} $name [$BRANCH] $COMMIT - cambios locales"
+          elif [ $UNPUSHED -gt 0 ]; then
+            echo "  ${YELLOW}⬆️${NC} $name [$BRANCH] $COMMIT - $UNPUSHED commits por push"
+          else
+            echo "  ${GREEN}✅${NC} $name [$BRANCH] $COMMIT"
+          fi
+        '
+        echo "------------------------------------------"
+      fi
+
+      # Sugerencias rápidas
+      if git status --porcelain | grep -q . || [ -f ".gitmodules" ]; then
+        echo ""
+        color_echo "💡 Comandos útiles:" "$BLUE"
+        echo "  • Commit:     mani run g-cm msg='mensaje'"
+        echo "  • Push:       mani run g-ph"
+        echo "  • Status detallado: mani run g-st detailed=true"
+      fi
+      echo ""
+
+  g-co-sm2:
+    desc: Cambiar todos los submódulos a una rama específica
+    tags: [ git, cli, sm ]
+    env:
+      branch: ""         # Rama destino para todos los submódulos
+      skip_errors: "false"
+    cmd: |
+      if [ -z "$branch" ]; then
+        echo "❌ Error: Debes especificar la rama (branch=nombre)"
+        exit 1
+      fi
+      
+      if [ ! -f ".gitmodules" ]; then
+        echo "❌ Error: No hay submódulos en este repositorio"
+        exit 1
+      fi
+      
+      echo "🔄 Cambiando TODOS los submódulos a rama '$branch'"
+      echo ""
+      
+      # Obtener lista de submódulos del .gitmodules
+      SUBMODULES=$(git config --file .gitmodules --get-regexp path | awk '{print $2}')
+      
+      SUCCESS_COUNT=0
+      TOTAL_COUNT=0
+      
+      for submodule in $SUBMODULES; do
+        ((TOTAL_COUNT++))
+        echo "[$TOTAL_COUNT] Procesando: $submodule"
+      
+        if [ ! -d "$submodule" ]; then
+          echo "Directorio: $(basename $(pwd)): $submodule"
+          echo "  ⚠️ Directorio no encontrado, inicializando..."
+          git submodule update --init $submodule
+        fi
+      
+        cd "${submodule}"
+      
+        if git fetch origin; then
+          # Intentar cambiar a la rama
+          if git checkout $branch 2>/dev/null || git checkout -b $branch origin/$branch 2>/dev/null; then
+            git pull origin $branch
+            echo "  ✅ $submodule -> $branch"
+            ((SUCCESS_COUNT++))
+          else
+            echo "  ❌ No se pudo cambiar a rama '$branch'"
+            if [ "$skip_errors" = "false" ]; then
+              cd ..
+              exit 1
+            fi
+          fi
+        else
+          echo "  ❌ Error en fetch para $submodule"
+          if [ "$skip_errors" = "false" ]; then
+            cd ..
+            exit 1
+          fi
+        fi
+      
+        cd ../..
+        echo ""
+      done
+      
+      # Registrar cambios
+      git add .gitmodules $SUBMODULES
+      
+      echo "📊 Resumen: $SUCCESS_COUNT de $TOTAL_COUNT submódulos actualizados"
+      
+      if [ $SUCCESS_COUNT -gt 0 ]; then
+        echo "📝 No olvides commitear: git commit -m 'Update submodules to $branch'"
+      fi
+
+  # Cambiar rama de un submódulo específico
+  g-co-sm0:
+    desc: Cambiar rama de un submódulo específico
+    tags: [ git, cliente, sbm ]
+    env:
+      sbm: ""      # Nombre del submódulo (ej: btc_stock)
+      branch: ""         # Rama destino (ej: 17.0, 18.0, feature/nueva)
+    cmd: |
+      if [ -z "$sbm" ]; then
+        echo "❌ Error: Debes especificar el submódulo (sbm=nombre)"
+        exit 1
+      fi
+      
+      if [ -z "$branch" ]; then
+        echo "❌ Error: Debes especificar la rama (branch=nombre)"
+        exit 1
+      fi
+      echo "🔄 Cambiando submódulo '$sbm' a rama '$branch'"
+      
+      # Verificar que el submódulo existe      
+      if [ ! -d "${OWNER_GIT}/${sbm}" ]; then
+        echo "❌ Error: Submódulo '$sbm' no encontrado"
+        exit 1
+      fi
+      
+      cd "${OWNER_GIT}/$sbm"
+      
+      # Fetch para asegurar que la rama existe en remoto
+      git fetch origin
+      
+      # Cambiar a la rama especificada
+      if git show-ref --verify --quiet refs/heads/$branch; then
+        git checkout $branch
+      elif git ls-remote --exit-code --heads origin $branch; then
+        git checkout -b $branch origin/$branch
+      else
+        echo "❌ Error: Rama '$branch' no existe local ni remotamente"
+        exit 1
+      fi
+      
+      # Pull para actualizar
+      git pull origin $branch
+      
+      cd ../..
+      
+      # Actualizar el .gitmodules y registrar el cambio
+      git add .gitmodules $sbm
+      
+      echo "✅ Submódulo '$sbm' actualizado a rama '$branch'"
+      echo "📝 No olvides commitear el cambio en el repositorio padre"
+      exit 1
+
+  # Cambiar rama de MÚLTIPLES submódulos
+  g-co-sm1:
+      desc: Cambiar rama de múltiples submódulos
+      tags: [ git, cliente, sbm ]
+      env:
+        sbms: ""     # Lista separada por comas (ej: btc_stock,btc_siat)
+        branch: ""         # Rama destino
+      cmd: |
+        if [ -z "$sbms" ]; then
+          echo "❌ Error: Debes especificar los submódulos (sbms=repo1,repo2)"
+          exit 1
+        fi
+        
+        if [ -z "$branch" ]; then
+          echo "❌ Error: Debes especificar la rama (branch=nombre)"
+          exit 1
+        fi
+        
+        # Convertir lista separada por comas en array
+        IFS=',' read -ra sbm_ARRAY <<< "$sbms"
+        
+        SUCCESS_COUNT=0
+        FAIL_COUNT=0
+        
+        for sbm in "${sbm_ARRAY[@]}"; do
+          # Trim espacios
+          sbm=$(echo "$sbm" | xargs)
+        
+          echo ""
+          echo "🔄 Procesando: $sbm -> $branch"
+        
+          if [ ! -d "$sbm" ]; then
+            echo "  ⚠️ Submódulo '$sbm' no encontrado, omitiendo..."
+            ((FAIL_COUNT++))
+            continue
+          fi
+        
+          cd "$sbm"
+        
+          if git fetch origin && \
+             (git checkout $branch 2>/dev/null || git checkout -b $branch origin/$branch 2>/dev/null) && \
+             git pull origin $branch; then
+            echo "  ✅ $sbm -> $branch"
+            ((SUCCESS_COUNT++))
+          else
+            echo "  ❌ Error en $sbm"
+            ((FAIL_COUNT++))
+          fi
+        
+          cd ..
+        done
+        
+        # Registrar cambios en el padre
+        git add .gitmodules $(echo "${sbm_ARRAY[@]}")
+        
+        echo ""
+        echo "📊 Resumen: $SUCCESS_COUNT exitosos, $FAIL_COUNT fallidos"
+        
+        if [ $SUCCESS_COUNT -gt 0 ]; then
+          echo "📝 No olvides commitear los cambios en el repositorio padre"
+        fi
+
+
+  g-cb-sm0:
+    desc: Versión simple - crea rama cliente y cambia submódulos a rama existente
+    tags: [ git, sm, branch ]
+    env:
+      branch: "16.0"          # Versión de Odoo (ej: 18.0)
+      ph: "false"
+    cmd: |
+      NEW_BRANCH="${branch}"
+      SUBMODULES_BRANCH="$branch"
+
+      echo "🚀 Creando rama: $NEW_BRANCH (submódulos en $SUBMODULES_BRANCH)"
+
+      # Crear rama cliente
+      git checkout -b $NEW_BRANCH
+
+      # Actualizar submódulos
+      git submodule foreach "git checkout $SUBMODULES_BRANCH || true"
+      git submodule foreach "git pull origin $SUBMODULES_BRANCH || true"
+
+      # Commit cambios
+      git add .
+      git commit -m "chore: create branch $NEW_BRANCH with submodules at $SUBMODULES_BRANCH"
+      if [ "$ph" = "true" ]; then
+        # Push
+        git push -u origin $NEW_BRANCH
+      fi 
+
+      echo "✅ Cliente migrado a rama $branch"
+      # echo "   Rama: $NEW_BRANCH"

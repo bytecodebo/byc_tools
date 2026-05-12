@@ -1,0 +1,7 @@
+<templateSet group="ExtraShellScripts">
+  <template name="array add" value="$ARRAY$+=($ITEM$)&#10;" description="Add new item to the end of array" toReformat="false" toShortenFQNames="false" deactivated="true">
+    <variable name="ARRAY" expression="" defaultValue="&quot;myArray&quot;" alwaysStopAt="true" />
+    <variable name="ITEM" expression="" defaultValue="&quot;item&quot;" alwaysStopAt="true" />
+    <context />
+  </template>
+</templateSet>

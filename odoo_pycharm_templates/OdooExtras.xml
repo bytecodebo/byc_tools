@@ -1,0 +1,340 @@
+<templateSet group="other">
+  <template name="todo" value="# TODO $DATE$ $USER$: $END$" description="Insert TODO comment with the current date and username" toReformat="false" toShortenFQNames="true">
+    <variable name="DATE" expression="date()" defaultValue="None" alwaysStopAt="false" />
+    <variable name="USER" expression="user()" defaultValue="None" alwaysStopAt="false" />
+    <context>
+      <option name="Python" value="true" />
+      <option name="Python_Top_Level" value="false" />
+    </context>
+  </template>
+  <template name="tg_lt" value="&amp;lt;" description="replace tags html like &lt; = &amp;lt;" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="XML" value="true" />
+    </context>
+  </template>
+  <template name="tg_gt" value="&amp;gt;" description="replace tags html like &gt;  &amp;gt;" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="XML" value="true" />
+    </context>
+  </template>
+  <template name="tg_q2" value="&amp;quot;" description="replace tags html doble quote  &amp;quot;" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="XML" value="true" />
+    </context>
+  </template>
+  <template name="tg_nl" value="&amp;#10;" description="replace tag to ascii new line = &amp;#10;" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="XML" value="true" />
+    </context>
+  </template>
+  <template name="tg_q2d" value="&amp;quot;$VAR$&amp;quot;" description="replace tags html double quote  &amp;quot; open and close" toReformat="false" toShortenFQNames="true">
+    <variable name="VAR" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="XML" value="true" />
+    </context>
+  </template>
+  <template name="tg_ltgt_end" value="&amp;lt;/$VAR$&amp;gt;" description="replace tags html like &lt;/tag_name&gt;" toReformat="false" toShortenFQNames="true">
+    <variable name="VAR" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="XML" value="true" />
+    </context>
+  </template>
+  <template name="tg_ltgt_start" value="&amp;lt;$TAG_NAME$&amp;gt;" description="replace tags html like &lt;tag_name&gt;" toReformat="false" toShortenFQNames="true">
+    <variable name="TAG_NAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="XML" value="true" />
+    </context>
+  </template>
+  <template name="tg_eq" value="&amp;#61;" description="replace tag html like `=` equal" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="XML" value="true" />
+    </context>
+  </template>
+  <template name="tg_true_val" value="&amp;quot;true&amp;quot;" description="add value true with double quotes" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="XML" value="true" />
+    </context>
+  </template>
+  <template name="tg_false_val" value="&amp;quot;false&amp;quot;" description="add value false with double quotes" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="XML" value="true" />
+    </context>
+  </template>
+  <template name="tg_field_name" value="&amp;lt;field name=&amp;quot;$VAR_NAME$&amp;quot; /&amp;gt;" description="add tag with field name e.g. &lt;field name=&quot;field_name&quot;&gt;" toReformat="false" toShortenFQNames="true">
+    <variable name="VAR_NAME" expression="" defaultValue="&quot;$field_name$&quot;" alwaysStopAt="true" />
+    <context>
+      <option name="XML" value="true" />
+    </context>
+  </template>
+  <template name="attr_name" value="$ATTR_NAME$=&amp;quot;$ATTR_VALUE$&amp;quot; " description="add tag with attr e.g. attr_name=&quot;$field_name$&quot;" toReformat="false" toShortenFQNames="true">
+    <variable name="ATTR_NAME" expression="" defaultValue="&quot;name&quot;" alwaysStopAt="true" />
+    <variable name="ATTR_VALUE" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="XML" value="true" />
+    </context>
+  </template>
+  <template name="tg_var_value" value="$$$VAR_VALUE$$$ " description="add tag value e.g. &quot;$var_value$&quot;" toReformat="false" toShortenFQNames="true">
+    <variable name="VAR_VALUE" expression="" defaultValue="&quot;field_&quot;" alwaysStopAt="true" />
+    <context>
+      <option name="XML" value="true" />
+    </context>
+  </template>
+  <template name="tg_pass_value" value="&amp;quot;pass&amp;quot;" description="add tag pass value e.g. &amp;quot;pass&amp;quot;" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="XML" value="true" />
+    </context>
+  </template>
+  <template name="crud_gr_sys_local" value="acc_sys_$ACCESS_NAME$,acc_sys_$ACCESS_NAME$ group,model_$CLASS_MODEL$,base.group_system,1,1,1,1" description="model_&quot;CLASS_MODEL&quot;" toReformat="false" toShortenFQNames="true">
+    <variable name="ACCESS_NAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="CLASS_MODEL" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="HTML" value="false" />
+      <option name="JSON" value="false" />
+      <option name="OTHER" value="true" />
+      <option name="Properties" value="false" />
+      <option name="Python" value="false" />
+      <option name="SHELL_SCRIPT" value="false" />
+      <option name="XML" value="false" />
+    </context>
+  </template>
+  <template name="crud_gr_busr_local" value="acc_gr_busr_$ACCESS_NAME$,acc_gr_busr_$ACCESS_NAME$ group,model_$CLASS_MODEL$,base.group_user,1,0,0,0" description="model_&quot;CLASS_MODEL&quot; base.group_user" toReformat="true" toShortenFQNames="true">
+    <variable name="ACCESS_NAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="CLASS_MODEL" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="HTML" value="false" />
+      <option name="JSON" value="false" />
+      <option name="OTHER" value="true" />
+      <option name="Properties" value="false" />
+      <option name="Python" value="false" />
+      <option name="SHELL_SCRIPT" value="false" />
+      <option name="XML" value="false" />
+    </context>
+  </template>
+  <template name="crud_gr_sys_ext" value="acc_sys_$ACCESS_NAME$,acc_sys_$ACCESS_NAME$ group,$MODULE_NAME$,base.group_system,1,1,1,1" description="&quot;MODULE_NAME&quot;.model_&quot;CLASS_MODEL&quot;" toReformat="false" toShortenFQNames="true">
+    <variable name="ACCESS_NAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="MODULE_NAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="HTML" value="false" />
+      <option name="JSON" value="false" />
+      <option name="OTHER" value="true" />
+      <option name="Properties" value="false" />
+      <option name="Python" value="false" />
+      <option name="SHELL_SCRIPT" value="false" />
+      <option name="XML" value="false" />
+    </context>
+  </template>
+  <template name="crud_gr_busr_ext" value="acc_gr_busr_$ACCESS_NAME$,acc_gr_busr_$ACCESS_NAME$ group,$MODULE_NAME$,base.group_user,1,0,0,0" description="&quot;MODULE_NAME&quot;.model_class_name base.group_user" toReformat="true" toShortenFQNames="true">
+    <variable name="ACCESS_NAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="MODULE_NAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="HTML" value="false" />
+      <option name="JSON" value="false" />
+      <option name="OTHER" value="true" />
+      <option name="Properties" value="false" />
+      <option name="Python" value="false" />
+      <option name="SHELL_SCRIPT" value="false" />
+      <option name="XML" value="false" />
+    </context>
+  </template>
+  <template name="attr_inv_opt" value="attrs=&amp;quot;{'invisible': [('$FIELD_OPTION$', '!=', '$OPTION_VALUE$')]}&amp;quot;" description="add tag with attr e.g. attrs=&quot;$field_name$&quot;" toReformat="false" toShortenFQNames="true">
+    <variable name="FIELD_OPTION" expression="" defaultValue="&quot;$field_option_name$&quot;" alwaysStopAt="true" />
+    <variable name="OPTION_VALUE" expression="" defaultValue="&quot;$option_value$&quot;" alwaysStopAt="true" />
+    <context>
+      <option name="XML" value="true" />
+    </context>
+  </template>
+  <template name="var_field" value="&lt;variable name=&quot;field_$VAR_NAME$&quot; expression=&quot;&quot; defaultValue=&quot;&quot; alwaysStopAt=&quot;true&quot;/&gt;" description="add var xml with field name prefix" toReformat="false" toShortenFQNames="true">
+    <variable name="VAR_NAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="XML" value="true" />
+    </context>
+  </template>
+  <template name="var_attr" value="&lt;variable name=&quot;attr_$VAR_NAME$&quot; expression=&quot;&quot; defaultValue=&quot;&quot; alwaysStopAt=&quot;true&quot;/&gt;" description="add var xml with attr name prefix" toReformat="false" toShortenFQNames="true">
+    <variable name="VAR_NAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="XML" value="true" />
+    </context>
+  </template>
+  <template name="var_attr_def_false" value="&lt;variable name=&quot;attr_default&quot; expression=&quot;&quot; defaultValue=&quot;&amp;quot;False&amp;quot;&quot; alwaysStopAt=&quot;true&quot;/&gt;" description="add var xml with attr_default value False" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="XML" value="true" />
+    </context>
+  </template>
+  <template name="var_attr_more" value="&lt;variable name=&quot;attr_more&quot; expression=&quot;&quot; defaultValue=&quot;&quot; alwaysStopAt=&quot;true&quot;/&gt;" description="add var xml with attr_more" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="XML" value="true" />
+    </context>
+  </template>
+  <template name="var_attr_def_true" value="&lt;variable name=&quot;attr_default&quot; expression=&quot;&quot; defaultValue=&quot;&amp;quot;True&amp;quot;&quot; alwaysStopAt=&quot;true&quot;/&gt;" description="add var xml with attr_default value True" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="XML" value="true" />
+    </context>
+  </template>
+  <template name="val_field_python" value="$$field_name$$ = fields.$$field_type$$(string=&amp;quot;$$attr_label$$&amp;quot;, default=$$attr_default$$, required=$$attr_required$$,&#10;             $$attr_more$$)" description="" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="XML" value="true" />
+    </context>
+  </template>
+  <template name="var_attr_store_false" value="&lt;variable name=&quot;attr_store&quot; expression=&quot;&quot; defaultValue=&quot;&amp;quot;False&amp;quot;&quot; alwaysStopAt=&quot;true&quot;/&gt;" description="add var xml with attr_store value False" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="XML" value="true" />
+    </context>
+  </template>
+  <template name="var_attr_store_true" value="&lt;variable name=&quot;attr_store&quot; expression=&quot;&quot; defaultValue=&quot;&amp;quot;True&amp;quot;&quot; alwaysStopAt=&quot;true&quot;/&gt;" description="add var xml with attr_store value True" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="XML" value="true" />
+    </context>
+  </template>
+  <template name="var_attr_value" value="&lt;variable name=&quot;attr_$VAR_NAME$&quot; expression=&quot;&quot; defaultValue=&quot;&amp;quot;$VAR_VALUE$&amp;quot;&quot; alwaysStopAt=&quot;true&quot;/&gt;" description="add var xml with attr name prefix and def value" toReformat="false" toShortenFQNames="true">
+    <variable name="VAR_NAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VAR_VALUE" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="XML" value="true" />
+    </context>
+  </template>
+  <template name="var_attr_test" value="&lt;variable name=&quot;attr_$VAR_NAME$&quot; expression=&quot;&quot; defaultValue=&quot;$VAR_VALUE$&quot; alwaysStopAt=&quot;true&quot;/&gt;" description="add var xml with attr name prefix" toReformat="false" toShortenFQNames="true">
+    <variable name="VAR_NAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VAR_VALUE" expression="" defaultValue="VAR_NAME" alwaysStopAt="true" />
+    <context>
+      <option name="XML" value="true" />
+    </context>
+  </template>
+  <template name="crud_gr_sys_busr_local" value="acc_sys_$ACCESS_NAME$,acc_sys_$ACCESS_NAME$ group,model_$CLASS_MODEL$,base.group_system,1,1,1,1&#10;acc_busr_$ACCESS_NAME$,acc_busr_$ACCESS_NAME$ group,model_$CLASS_MODEL$,base.group_user,1,1,0,0&#10;" description="add acc system and base user" toReformat="false" toShortenFQNames="true">
+    <variable name="ACCESS_NAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="CLASS_MODEL" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="HTML" value="false" />
+      <option name="JSON" value="false" />
+      <option name="OTHER" value="true" />
+      <option name="Properties" value="false" />
+      <option name="Python" value="false" />
+      <option name="SHELL_SCRIPT" value="false" />
+      <option name="XML" value="false" />
+    </context>
+  </template>
+  <template name="crud_gby_supp_ext" value="acc_supp_$ACCESS_NAME$,acc_supp_$ACCESS_NAME$ grp,$MODULE_NAME$,byc_main_setting.grp_byc_support,1,1,1,1" description="&quot;MODULE_NAME&quot;.model_class_name grp_byc_support" toReformat="false" toShortenFQNames="true">
+    <variable name="ACCESS_NAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="MODULE_NAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="HTML" value="false" />
+      <option name="JSON" value="false" />
+      <option name="OTHER" value="true" />
+      <option name="Properties" value="false" />
+      <option name="Python" value="false" />
+      <option name="SHELL_SCRIPT" value="false" />
+      <option name="XML" value="false" />
+    </context>
+  </template>
+  <template name="crud_gby_supp_local" value="acc_supp_$ACCESS_NAME$,acc_supp_$ACCESS_NAME$ grp,model_$CLASS_NAME$,byc_main_setting.grp_byc_support,1,1,1,1" description="model_&quot;CLASS_MODEL&quot;" toReformat="false" toShortenFQNames="true">
+    <variable name="ACCESS_NAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="CLASS_NAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="HTML" value="false" />
+      <option name="JSON" value="false" />
+      <option name="OTHER" value="true" />
+      <option name="Properties" value="false" />
+      <option name="Python" value="false" />
+      <option name="SHELL_SCRIPT" value="false" />
+      <option name="XML" value="false" />
+    </context>
+  </template>
+  <template name="crud_gby_usr_ext" value="acc_usr_$ACCESS_NAME$,acc_usr_$ACCESS_NAME$ group,$MODULE_NAME$,byc_main_setting.grp_byc_user,1,0,0,0" description="&quot;MODULE_NAME&quot;.model_class_name grp_byc_user" toReformat="false" toShortenFQNames="true">
+    <variable name="ACCESS_NAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="MODULE_NAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="HTML" value="false" />
+      <option name="JSON" value="false" />
+      <option name="OTHER" value="true" />
+      <option name="Properties" value="false" />
+      <option name="Python" value="false" />
+      <option name="SHELL_SCRIPT" value="false" />
+      <option name="XML" value="false" />
+    </context>
+  </template>
+  <template name="crud_gctm_local_R_0_0_0" value="acc_$ACCESS_GROUP$_$ACCESS_NAME$,acc_$ACCESS_GROUP$_$ACCESS_NAME$ group,model_$CLASS_NAME$,$CUSTOM_GROUP$,1,0,0,0" description="custom group Read" toReformat="true" toShortenFQNames="true">
+    <variable name="ACCESS_GROUP" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="ACCESS_NAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="CLASS_NAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="CUSTOM_GROUP" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="HTML" value="false" />
+      <option name="JSON" value="false" />
+      <option name="OTHER" value="true" />
+      <option name="Properties" value="false" />
+      <option name="Python" value="false" />
+      <option name="SHELL_SCRIPT" value="false" />
+      <option name="XML" value="false" />
+    </context>
+  </template>
+  <template name="crud_gctm_local_R_W_0_0" value="acc_$ACCESS_GROUP$_$ACCESS_NAME$,acc_$ACCESS_GROUP$_$ACCESS_NAME$ group,model_$CLASS_NAME$,$CUSTOM_GROUP$,1,1,0,0" description="custom group Read Write" toReformat="true" toShortenFQNames="true">
+    <variable name="ACCESS_GROUP" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="ACCESS_NAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="CLASS_NAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="CUSTOM_GROUP" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="HTML" value="false" />
+      <option name="JSON" value="false" />
+      <option name="OTHER" value="true" />
+      <option name="Properties" value="false" />
+      <option name="Python" value="false" />
+      <option name="SHELL_SCRIPT" value="false" />
+      <option name="XML" value="false" />
+    </context>
+  </template>
+  <template name="crud_gctm_local_R_W_C_0" value="acc_$ACCESS_GROUP$_$ACCESS_NAME$,acc_$ACCESS_GROUP$_$ACCESS_NAME$ group,model_$CLASS_NAME$,$CUSTOM_GROUP$,1,1,1,0" description="custom groups Read Write Create" toReformat="true" toShortenFQNames="true">
+    <variable name="ACCESS_GROUP" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="ACCESS_NAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="CLASS_NAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="CUSTOM_GROUP" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="HTML" value="false" />
+      <option name="JSON" value="false" />
+      <option name="OTHER" value="true" />
+      <option name="Properties" value="false" />
+      <option name="Python" value="false" />
+      <option name="SHELL_SCRIPT" value="false" />
+      <option name="XML" value="false" />
+    </context>
+  </template>
+  <template name="crud_gctm_local_R_W_C_U" value="acc_$ACCESS_GROUP$_$ACCESS_NAME$,acc_$ACCESS_GROUP$_$ACCESS_NAME$ group,model_$CLASS_NAME$,$CUSTOM_GROUP$,1,1,1,1" description="custom group All" toReformat="true" toShortenFQNames="true">
+    <variable name="ACCESS_GROUP" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="ACCESS_NAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="CLASS_NAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="CUSTOM_GROUP" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="HTML" value="false" />
+      <option name="JSON" value="false" />
+      <option name="OTHER" value="true" />
+      <option name="Properties" value="false" />
+      <option name="Python" value="false" />
+      <option name="SHELL_SCRIPT" value="false" />
+      <option name="XML" value="false" />
+    </context>
+  </template>
+  <template name="crud_gby_usr_local" value="acc_usr_$ACCESS_NAME$,acc_usr_$ACCESS_NAME$ group,model_$CLASS_NAME$,byc_main_setting.grp_byc_user,1,0,0,0" description="model_&quot;CLASS_MODEL&quot; grp_byc_user" toReformat="false" toShortenFQNames="true">
+    <variable name="ACCESS_NAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="CLASS_NAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="HTML" value="false" />
+      <option name="JSON" value="false" />
+      <option name="OTHER" value="true" />
+      <option name="Properties" value="false" />
+      <option name="Python" value="false" />
+      <option name="SHELL_SCRIPT" value="false" />
+      <option name="XML" value="false" />
+    </context>
+  </template>
+  <template name="crud_gby_supp_usr_local" value="acc_supp_$ACCESS_NAME$,acc_supp_$ACCESS_NAME$ grp,model_$CLASS_NAME$,byc_main_setting.grp_byc_support,1,1,1,1&#10;acc_usr_$ACCESS_NAME$,acc_usr_$ACCESS_NAME$ group,model_$CLASS_NAME$,byc_main_setting.grp_byc_user,1,0,0,0" description="add acc byc support and byc user" toReformat="false" toShortenFQNames="true">
+    <variable name="ACCESS_NAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="CLASS_NAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="HTML" value="false" />
+      <option name="JSON" value="false" />
+      <option name="OTHER" value="true" />
+      <option name="Properties" value="false" />
+      <option name="Python" value="false" />
+      <option name="SHELL_SCRIPT" value="false" />
+      <option name="XML" value="false" />
+    </context>
+  </template>
+</templateSet>

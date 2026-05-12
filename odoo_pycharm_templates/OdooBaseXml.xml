@@ -1,18 +1,19 @@
 <templateSet group="OdooBaseXml">
-  <template name="od_form_header" value="&lt;header&gt;&#10;    &lt;button name=&quot;action_to_draft&quot; &#10;        string=&quot;Draft&quot; &#10;            class=&quot;oe_highlight&quot; &#10;            states=&quot;posted,cancel&quot; &#10;            type=&quot;object&quot;&#10;                invisible=&quot;1&quot;/&gt;&#10;            &lt;button name=&quot;action_to_post&quot; &#10;        string=&quot;Post&quot; &#10;            class=&quot;oe_highlight&quot; &#10;            states=&quot;draft&quot; &#10;            type=&quot;object&quot;&#10;            invisible=&quot;1&quot;/&gt;&#10;            &lt;button name=&quot;action_to_cancel&quot; &#10;        string=&quot;Cancel&quot; &#10;            class=&quot;oe_highlight&quot; &#10;            states=&quot;draft,posted&quot; &#10;            type=&quot;object&quot;&#10;            invisible=&quot;1&quot;/&gt;&#10;    &lt;field name=&quot;state&quot; widget=&quot;statusbar&quot; statusbar_visible=&quot;$selection_state$&quot;/&gt;&#10;&lt;/header&gt;" description="Add Form's header with 'state' and buttons" toReformat="false" toShortenFQNames="true">
-    <variable name="selection_state" expression="" defaultValue="state,posted,cancel" alwaysStopAt="true" />
+  <template name="od_form_header" value="&lt;header&gt;&#10;    &lt;button name=&quot;$method_name$&quot; string=&quot;$string_label$&quot; class=&quot;oe_highlight&quot; states=&quot;&quot; type=&quot;object&quot;/&gt;&#10;    &lt;field name=&quot;state&quot; widget=&quot;statusbar&quot; statusbar_visible=&quot;&quot;/&gt;&#10;&lt;/header&gt;" description="Add Form's header with 'state' and buttons" toReformat="false" toShortenFQNames="true">
+    <variable name="method_name" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="string_label" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="XML" value="true" />
     </context>
   </template>
-  <template name="od_form_title_G16" value="&lt;div class=&quot;oe_title&quot;&gt;&#10;    &lt;label for=&quot;name&quot;/&gt;&#10;    &lt;h1&gt;&#10;        &lt;field name=&quot;name&quot; placeholder=&quot;......&quot;/&gt;&#10;    &lt;/h1&gt;&#10;&lt;/div&gt;" description="Add title for the form view" toReformat="false" toShortenFQNames="true">
+  <template name="od_form_title" value="&lt;div class=&quot;oe_title&quot;&gt;&#10;    &lt;label for=&quot;name&quot; class=&quot;oe_edit_only&quot;/&gt;&#10;    &lt;h1&gt;&#10;        &lt;field name=&quot;name&quot; placeholder=&quot;......&quot;/&gt;&#10;    &lt;/h1&gt;&#10;&lt;/div&gt;" description="Add title for the form view" toReformat="false" toShortenFQNames="true">
     <context>
       <option name="XML" value="true" />
     </context>
   </template>
-  <template name="od_button_object" value="&lt;button name=&quot;$button_method_name$&quot; &#10;class=&quot;oe_highlight&quot; &#10;type=&quot;object&quot; &#10;string=&quot;$button_method_label$&quot;/&gt;" description="Add Odoo object button" toReformat="true" toShortenFQNames="true">
+  <template name="od_button_object" value="&lt;button name=&quot;$button_method_name$&quot; class=&quot;oe_highlight&quot; type=&quot;object&quot; string=&quot;$button_method_label$&quot;/&gt;" description="Add Odoo object button" toReformat="false" toShortenFQNames="true">
     <variable name="button_method_name" expression="" defaultValue="" alwaysStopAt="true" />
-    <variable name="button_method_label" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="$button_method_label$" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="XML" value="true" />
     </context>
@@ -23,18 +24,18 @@
       <option name="XML" value="true" />
     </context>
   </template>
-  <template name="od_field_restrict" value="&lt;field name=&quot;$field_name$&quot; options=&quot;{'no_open': True, 'no_create_edit': True, 'no_create': True}&quot;/&gt;" description="Add field restrict" toReformat="true" toShortenFQNames="true">
+  <template name="od_field_options" value="&lt;field name=&quot;$field_name$&quot;  options=&quot;{'no_open': True, 'no_create_edit': True, 'no_create': True}&quot;/&gt;" description="Add field with options attr on view" toReformat="true" toShortenFQNames="true">
     <variable name="field_name" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="XML" value="true" />
     </context>
   </template>
-  <template name="od_opt_restrict" value="options=&quot;{'no_open': True, 'no_create_edit': True, 'no_create': True}&quot; " description="Restrict options fields" toReformat="true" toShortenFQNames="true">
+  <template name="od_attr_options" value="&#10;options=&quot;{'no_open': True, 'no_create_edit': True, 'no_create': True}&quot; " description="Add options attributes on field" toReformat="true" toShortenFQNames="true">
     <context>
       <option name="XML" value="true" />
     </context>
   </template>
-  <template name="od_field_company_multi" value="&lt;field name=&quot;company_id&quot; groups=&quot;base.group_multi_company&quot; &#10;    options=&quot;{'no_open': True, 'no_create_edit': True, 'no_create': True}&quot;/&gt;&#10;&lt;field name=&quot;company_id&quot; invisible=&quot;1&quot;/&gt;" description="Add field company with options and group" toReformat="true" toShortenFQNames="true">
+  <template name="od_field_company_multi" value="&lt;field name=&quot;company_id&quot; groups=&quot;base.group_multi_company&quot;                 options=&quot;{'no_open': True, 'no_create_edit': True, 'no_create': True}&quot;/&gt;" description="Add field company with options and group" toReformat="true" toShortenFQNames="true">
     <context>
       <option name="XML" value="true" />
     </context>
@@ -53,7 +54,7 @@
       <option name="XML" value="true" />
     </context>
   </template>
-  <template name="od_field_inherit" value="&lt;field name=&quot;inherit_id&quot; ref=&quot;$field_ref$&quot;/&gt;" description="Add field inherit ref on view" toReformat="true" toShortenFQNames="true">
+  <template name="od_field_inherit" value="&lt;field name=&quot;inherit&quot; ref=&quot;$field_ref$&quot;/&gt;" description="Add field inherit ref on view" toReformat="true" toShortenFQNames="true">
     <variable name="field_ref" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="XML" value="true" />
@@ -65,34 +66,32 @@
       <option name="XML" value="true" />
     </context>
   </template>
-  <template name="od_field_state" value="&lt;field name=&quot;state&quot; widget=&quot;statusbar&quot; statusbar_visible=&quot;$selection_state$&quot;/&gt;" description="Add state field with progressbar on view" toReformat="true" toShortenFQNames="true">
-    <variable name="selection_state" expression="" defaultValue="draft,posted,cancel" alwaysStopAt="true" />
+  <template name="od_field_state" value="&lt;field name=&quot;state&quot; widget=&quot;statusbar&quot; statusbar_visible=&quot;&quot;/&gt;" description="Add state field with progressbar on view" toReformat="true" toShortenFQNames="true">
     <context>
       <option name="XML" value="true" />
     </context>
   </template>
-  <template name="od_fieldview_domain_company" value="&lt;field name=&quot;domain&quot;&gt;[('company_id', 'in', [False, allowed_company_ids[0] ])]&lt;/field&gt;" description="Add filter domain of company_id on view" toReformat="true" toShortenFQNames="true">
+  <template name="od_filter_domain_company" value="&lt;field name=&quot;domain&quot;&gt;[('company_id', 'in', [False, allowed_company_ids[0] ])]&lt;/field&gt;" description="Add filter domain of company_id on view" toReformat="true" toShortenFQNames="true">
     <context>
       <option name="XML" value="true" />
     </context>
   </template>
-  <template name="od_filterview_domain_context" value="&lt;field name=&quot;context&quot;&gt;{'$field_key$': $field_value$ }&lt;/field&gt;" description="Add filter context on view" toReformat="true" toShortenFQNames="true">
+  <template name="od_filter_domain_context" value="&lt;field name=&quot;context&quot;&gt;{'$field_key$': $field_value$ }&lt;/field&gt;" description="Add filter context on view" toReformat="true" toShortenFQNames="true">
     <variable name="field_key" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="field_value" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="XML" value="true" />
     </context>
   </template>
-  <template name="od_button_box" value="&lt;button name=&quot;$action_button$&quot; &#10;                type=&quot;object&quot;                &#10;                class=&quot;oe_stat_button&quot; &#10;                icon=&quot;$action_icon$&quot;&gt;                &#10;        &lt;/button&gt;&#10;" description="Add Button Box on View" toReformat="true" toShortenFQNames="true">
-    <variable name="action_button" expression="" defaultValue="action_" alwaysStopAt="true" />
-    <variable name="action_icon" expression="" defaultValue="fa-" alwaysStopAt="true" />
+  <template name="od_button_box" value="&lt;div class=&quot;oe_button_box&quot; name=&quot;$button_box_name$&quot;&gt;&#10;        &lt;button name=&quot;toggle_active&quot; &#10;                type=&quot;object&quot;&#10;                confirm=&quot;$confirm_message$&quot;&#10;                class=&quot;oe_stat_button&quot; &#10;                icon=&quot;fa-archive&quot;&gt;&#10;                &lt;field name=&quot;active&quot; widget=&quot;boolean_button&quot; options='{&quot;terminology&quot;: &quot;archive&quot;}'/&gt;&#10;        &lt;/button&gt;&#10;&lt;/div&gt;" description="Add Button Box on View" toReformat="false" toShortenFQNames="true">
+    <variable name="button_box_name" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="confirm_message" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="XML" value="true" />
     </context>
   </template>
-  <template name="od_button_action" value="&lt;button name=&quot;%($action_xml_id$)d&quot; &#10;    class=&quot;oe_highlight&quot; &#10;    type=&quot;action&quot; &#10;    string=&quot;$button_label$&quot;/&gt;" description="Add Odoo button" toReformat="false" toShortenFQNames="true">
+  <template name="od_button_action" value="&lt;button name=&quot;%($action_xml_id$)d&quot; class=&quot;oe_highlight&quot; type=&quot;action&quot; string=&quot;ObjectButton&quot;/&gt;" description="Add Odoo button" toReformat="false" toShortenFQNames="true">
     <variable name="action_xml_id" expression="" defaultValue="" alwaysStopAt="true" />
-    <variable name="button_label" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="XML" value="true" />
     </context>
@@ -164,7 +163,7 @@
       <option name="XML" value="true" />
     </context>
   </template>
-  <template name="od_fieldview_context_company" value="&lt;field name=&quot;context&quot;&gt;{'default_company_id': allowed_company_ids[0]}&lt;/field&gt;" description="Add filter context on view" toReformat="true" toShortenFQNames="true">
+  <template name="od_filter_context_company" value="&lt;field name=&quot;context&quot;&gt;{'default_company_id': allowed_company_ids[0]}&lt;/field&gt;" description="Add filter context on view" toReformat="true" toShortenFQNames="true">
     <context>
       <option name="XML" value="true" />
     </context>

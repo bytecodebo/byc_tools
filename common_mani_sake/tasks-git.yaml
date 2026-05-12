@@ -55,7 +55,9 @@ tasks:
   g-pl:
     desc: Pull origin git
     tags: [git]
-    cmd: git pull origin $branch
+    cmd: |
+      git pull origin $branch
+      sleep 1
 
   g-plr:
     desc: Git Pull [$remote, $branch]
@@ -210,6 +212,18 @@ tasks:
 
   pwd: pwd
 
+  g-ufb:
+    desc: upstream fetch branch 
+    tags: [git]
+    target: all
+    env:
+      branch:
+      remote: upstream
+    cmd: |
+      if [ "$branch" = "" ]; then
+        branch="${BRANCH_NAME}"  
+      fi 
+      git fetch $remote $branch 
 
 specs:
   table:
