@@ -88,6 +88,8 @@ tasks:
   g-mg:
     desc: Merge local branch git brr=remote branch branch=current branch
     tags: [git]
+    spec: multi_repo
+    theme: multi_repo
     env:
       branch: 14.0
       brr: 14.0dev
@@ -96,6 +98,8 @@ tasks:
   g-cm:
     desc: Commit branch git
     tags: [git]
+    spec: multi_repo
+    theme: multi_repo
     env:
       msg: ""
     commands:
@@ -126,7 +130,8 @@ tasks:
     tags: [git]
     env:
       branch:
-    spec: filtered_text
+    spec: multi_repo
+    theme: multi_repo
     cmd: |
       if [ "$branch" = "" ]; then
         branch="${BRANCH_NAME}"
