@@ -173,3 +173,14 @@ themes:
     text:
       prefix: false
       header: false
+
+  multi_repo:
+    table:
+      options:
+        draw_border: true
+        separate_columns: true
+        separate_header: false
+        separate_rows: false
+    text:
+      prefix: false
+      header: false

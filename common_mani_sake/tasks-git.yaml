@@ -55,8 +55,10 @@ tasks:
   g-pl:
     desc: Pull origin git
     tags: [git]
+    spec: multi_repo
+    theme: multi_repo
     cmd: |
-      git pull origin $branch
+      git pull origin $branch      
       sleep 1
 
   g-plr:
@@ -124,12 +126,14 @@ tasks:
     tags: [git]
     env:
       branch:
+    spec: filtered_text
     cmd: |
       if [ "$branch" = "" ]; then
         branch="${BRANCH_NAME}"
       fi
       echo "branch ph from LOCAL ${branch}"
       git push origin $branch
+      sleep 2
 
   g-send:
     desc: add commit and push git
