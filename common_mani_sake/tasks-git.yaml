@@ -1,10 +1,33 @@
 tasks:
+  g-cr:
+    desc: Create remote upstream
+    tags: [ git ]
+    spec: multi_repo
+    theme: multi_repo
+    env:
+      remote: upstream
+      brr:
+    cmd: |
+      f [ "$brr" = "" ]; then
+        echo "New branch from remote is required brr=new_branch"
+        exit 1
+      fi 
+      git remote add ${remote} ${MANI_PROJECT_URL}
+      git fetch ${remote} ${brr}
+      git checkout -b ${brr} remotes/${remote}/${brr}
+  g-sr:
+    desc: Git remote
+    tags: [ git ]
+    spec: multi_repo
+    cmd: |    
+      git remote
+
   g-fn:
     desc: Find git repositories
     target:
       all: false
     cmd: |     
-      find ${PROJECT_PATH} -type d -exec test -d {}/.git \; -prune -print
+      find ${MANI_PROJECT_PATH} -type d -exec test -d {}/.git \; -prune -print
 
   g-ft:
     desc: Fetch git
@@ -18,7 +41,7 @@ tasks:
     target: all
     env:
       igem: false
-    cmd: |
+    cmd: |      
       git status
 
   g-cst:
@@ -135,10 +158,17 @@ tasks:
     cmd: |
       if [ "$branch" = "" ]; then
         branch="${BRANCH_NAME}"
+      fi         
+      echo $(pwd)
+      echo "  push from ${branch}"
+      UNPUSHED=$(git log origin/$(git branch --show-current)..HEAD 2>/dev/null | wc -l)
+      if [ $UNPUSHED -gt 0 ]; then
+        git push origin $branch            
+        sleep 1        
+      else
+        echo "  ✅ Everything up-to-date"
       fi
-      echo "branch ph from LOCAL ${branch}"
-      git push origin $branch
-      sleep 2
+      echo " ** ** "
 
   g-send:
     desc: add commit and push git

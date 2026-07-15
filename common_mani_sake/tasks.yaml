@@ -1,4 +1,140 @@
 tasks:
+  t-omm:
+    desc: Odoo Mod Migrator
+    spec: multi_repo
+    theme: multi_repo
+    tags: [git]
+    env:
+      source:
+      target:
+      loglevel: "ERROR"
+      excdirs:
+      excmods:
+      excpatt:
+      patterns:
+      modules:
+    cmd: |
+      # odoo upgrade_code --addons-path ${MANI_PROJECT_PATH} --from ${source} --to ${target}
+      # sleep 1
+      if [ "$source" = "" ]; then
+          echo "Origin version is required: source"
+          exit 1
+      fi
+      if [ "$target" = "" ]; then
+          echo "Target version is required: target"
+          exit 1
+      fi
+      full_args=""
+      if [ "$excdirs" != "" ]; then
+        full_args="${full_args}--exc-dirs ${excdirs} "
+      fi
+      if [ "$excmods" != "" ]; then
+        full_args="${full_args}--exc-modules ${excmods} "
+      fi
+      if [ "$excpatt" != "" ]; then
+        full_args="${full_args}--exc-patterns ${excpatt} "
+      fi
+      if [ "$patterns" != "" ]; then
+        full_args="${full_args}--patterns ${patterns} "
+      fi
+      if [ "$modules" != "" ]; then
+        full_args="${full_args}--modules ${modules} "
+      fi
+      omig -d ${MANI_PROJECT_PATH} --init-version-name ${source} --target-version-name ${target} -nrmf -nc -npc --log-level ${loglevel} ${full_args}
+
+  t-omd:
+    desc: Odoo updacode Migrator
+    spec: multi_repo
+    theme: multi_repo
+    tags: [git]
+    env:
+      source:
+      target:
+      loglevel: "ERROR"
+      excdirs:
+      excmods:
+      excpatt:
+      patterns:
+      modules:
+    cmd: |      
+      # sleep 1
+      if [ "$source" = "" ]; then
+          echo "Origin version is required: source"
+          exit 1
+      fi
+      if [ "$target" = "" ]; then
+          echo "Target version is required: target"
+          exit 1
+      fi
+      full_args=""
+      if [ "$excdirs" != "" ]; then
+        full_args="${full_args}--exc-dirs ${excdirs} "
+      fi
+      if [ "$excmods" != "" ]; then
+        full_args="${full_args}--exc-modules ${excmods} "
+      fi
+      if [ "$excpatt" != "" ]; then
+        full_args="${full_args}--exc-patterns ${excpatt} "
+      fi
+      if [ "$patterns" != "" ]; then
+        full_args="${full_args}--patterns ${patterns} "
+      fi
+      if [ "$modules" != "" ]; then
+        full_args="${full_args}--modules ${modules} "
+      fi
+      odoo --addons-path=${MANI_PROJECT_PATH} upgrade_code --from ${source} --to ${target}
+
+  t-xom:
+    desc: Migration Odoo
+    spec: multi_repo
+    theme: multi_repo
+    tags: [git]
+    env:
+      source:
+      target:
+      loglevel: "ERROR"
+      excdirs:
+      excmods:
+      excpatt:
+      patterns:
+      modules:
+    cmd: |
+      if [ "$source" = "" ]; then
+          echo "Origin version is required: source"
+          exit 1
+      fi
+      if [ "$target" = "" ]; then
+          echo "Target version is required: target"
+          exit 1
+      fi
+      full_args=""
+      if [ "$excdirs" != "" ]; then
+        full_args="${full_args}--exc-dirs ${excdirs} "
+      fi
+      if [ "$excmods" != "" ]; then
+        full_args="${full_args}--exc-modules ${excmods} "
+      fi
+      if [ "$excpatt" != "" ]; then
+        full_args="${full_args}--exc-patterns ${excpatt} "
+      fi
+      if [ "$patterns" != "" ]; then
+        full_args="${full_args}--patterns ${patterns} "
+      fi
+      if [ "$modules" != "" ]; then
+        full_args="${full_args}--modules ${modules} "
+      fi
+      omig -d ${MANI_PROJECT_PATH} --init-version-name ${source} --target-version-name ${target} -nrmf -nc -npc --log-level ${loglevel} ${full_args}
+
+  t-cnv:
+    desc: Upgrade Odoo
+    spec: multi_repo
+    theme: multi_repo
+    env:
+      source: 14.0
+      target: 17.0
+    cmd: |
+      odoo upgrade_code --addons-path ${MANI_PROJECT_PATH} --from ${source} --to ${target}
+      sleep 2
 
   c-home:
     name: Cleanup home

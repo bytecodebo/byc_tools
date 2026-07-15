@@ -297,7 +297,6 @@ tasks:
           echo "📝 No olvides commitear los cambios en el repositorio padre"
         fi
 
-
   g-cb-sm0:
     desc: Versión simple - crea rama cliente y cambia submódulos a rama existente
     tags: [ git, sm, branch ]

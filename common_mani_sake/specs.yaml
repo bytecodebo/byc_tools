@@ -19,6 +19,14 @@ specs:
     ignore_errors: true
     omit_empty: false
 
+  multi_repo2:
+    output: table
+    parallel: false
+    ignore_errors: true
+    omit_empty: true
+    omit_empty_rows: true
+    omit_empty_columns: true
+
   multi_repo:
     output: table
     parallel: false
