@@ -148,6 +148,16 @@ tasks:
       - task: g-pl
       - task: g-ph
 
+  g-phf:
+    desc: Push branch git force
+    tags: [git]
+    env:
+      branch:
+    spec: multi_repo
+    theme: multi_repo
+    cmd: |
+      git push origin $branch
+
   g-ph:
     desc: Push branch git
     tags: [git]

@@ -3,8 +3,8 @@ tasks:
     desc: Git pull para repos de clientes (con submódulos)
     tags: [ git, sm ]
     cmd: |
-      git pull --recurse-sbms
-      git sbm update --init --recursive --remote
+      git pull --recurse-submodules
+      git submodule update --init --recursive --remote
 
   g-syc-sm:
     desc: Switch branch git para repos de clientes (con submódulos)
@@ -13,7 +13,7 @@ tasks:
       branch: 14.0
     cmd: |
       git checkout $branch
-      git sbm update --init --recursive
+      git submodule update --init --recursive
 
   g-st-sm0:
     desc: show working tree status compacto incluyendo submódulos
@@ -84,7 +84,7 @@ tasks:
         color_echo "📦 Submódulos:" "$BLUE"
         echo "------------------------------------------"
 
-        git sbm foreach --quiet '
+        git submodule foreach --quiet '
           BRANCH=$(git branch --show-current 2>/dev/null || echo "detached")
           COMMIT=$(git rev-parse --short HEAD)
           HAS_CHANGES=$(git status --porcelain | wc -l)
@@ -186,7 +186,7 @@ tasks:
   # Cambiar rama de un submódulo específico
   g-co-sm0:
     desc: Cambiar rama de un submódulo específico
-    tags: [ git, cliente, sbm ]
+    tags: [ git, cliente, submodule ]
     env:
       sbm: ""      # Nombre del submódulo (ej: btc_stock)
       branch: ""         # Rama destino (ej: 17.0, 18.0, feature/nueva)
@@ -240,11 +240,11 @@ tasks:
       desc: Cambiar rama de múltiples submódulos
       tags: [ git, cliente, sbm ]
       env:
-        sbms: ""     # Lista separada por comas (ej: btc_stock,btc_siat)
+        subms: ""     # Lista separada por comas (ej: btc_stock,btc_siat)
         branch: ""         # Rama destino
       cmd: |
-        if [ -z "$sbms" ]; then
-          echo "❌ Error: Debes especificar los submódulos (sbms=repo1,repo2)"
+        if [ -z "$subms" ]; then
+          echo "❌ Error: Debes especificar los submódulos (subms=repo1,repo2)"
           exit 1
         fi
         
@@ -254,12 +254,12 @@ tasks:
         fi
         
         # Convertir lista separada por comas en array
-        IFS=',' read -ra sbm_ARRAY <<< "$sbms"
+        IFS=',' read -ra SUBMODULE_ARRAY <<< "$subms"
         
         SUCCESS_COUNT=0
         FAIL_COUNT=0
         
-        for sbm in "${sbm_ARRAY[@]}"; do
+        for sbm in "${SUBMODULE_ARRAY[@]}"; do
           # Trim espacios
           sbm=$(echo "$sbm" | xargs)
         
@@ -288,7 +288,7 @@ tasks:
         done
         
         # Registrar cambios en el padre
-        git add .gitmodules $(echo "${sbm_ARRAY[@]}")
+        git add .gitmodules $(echo "${SUBMODULE_ARRAY[@]}")
         
         echo ""
         echo "📊 Resumen: $SUCCESS_COUNT exitosos, $FAIL_COUNT fallidos"
